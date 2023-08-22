@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="User_Controls\UC_Commodity.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User_Controls\UC_CommodityGroup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Edit_commodity_group.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +21,13 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="User_Controls\UC_Commodity.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="User_Controls\UC_CommodityGroup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Edit_commodity_group.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

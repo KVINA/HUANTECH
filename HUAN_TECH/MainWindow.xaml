@@ -12,7 +12,8 @@
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontFamily" Value="Segoe UI"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontWeight" Value="UltraLight" />
+                <Setter Property="FontStretch" Value="UltraExpanded" />
                 <Setter Property="Height" Value="28"/>
             </Style>
 
@@ -39,7 +40,7 @@
             
             <MenuItem Header="_Khai báo">
                 <MenuItem Tag="UC_CommodityGroup" Header="Danh mục nhóm hàng" Click="MenuItem_Click"/>
-                <MenuItem Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
+                <MenuItem Tag="UC_Commodity" Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
                 <MenuItem Header="Danh mục nhóm đối tác" Click="MenuItem_Click"/>
                 <MenuItem Header="Danh mục đối tác" Click="MenuItem_Click"/>
             </MenuItem>
