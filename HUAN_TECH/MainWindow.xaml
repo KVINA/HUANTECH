@@ -10,20 +10,20 @@
         <Grid.Resources>
             <Style TargetType="MenuItem" BasedOn="{x:Null}">
                 <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Height" Value="28"/>
             </Style>
 
             <Style TargetType="Menu" BasedOn="{x:Null}">
-                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Margin" Value="2"/>             
             </Style>
 
-            <Style TargetType="TabItem" BasedOn="{x:Null}">
+            <Style TargetType="TabItem" BasedOn="{x:Null}"/>
 
-            </Style>
+            <Style TargetType="TabControl" BasedOn="{x:Null}"/>
 
-            <Style TargetType="TabControl" BasedOn="{x:Null}">
-
-            </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,20 +31,20 @@
         </Grid.RowDefinitions>
         
         <Menu>
-            <MenuItem Header="Hệ thống">
+            <MenuItem Header="_Hệ thống">
                 <MenuItem Header="Danh sách menu" Click="MenuItem_Click"/>
                 <MenuItem Header="Đăng xuất" Click="MenuItem_Click"/>
                 <MenuItem Header="Thoát" Click="MenuItem_Click"/>
             </MenuItem>
             
-            <MenuItem Header="Khai báo">
+            <MenuItem Header="_Khai báo">
                 <MenuItem Tag="UC_CommodityGroup" Header="Danh mục nhóm hàng" Click="MenuItem_Click"/>
                 <MenuItem Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
                 <MenuItem Header="Danh mục nhóm đối tác" Click="MenuItem_Click"/>
                 <MenuItem Header="Danh mục đối tác" Click="MenuItem_Click"/>
             </MenuItem>
 
-            <MenuItem Header="Thuộc tính hàng hóa">
+            <MenuItem Header="_Thuộc tính hàng hóa">
                 <MenuItem Header="Mẫu thành phẩm" Click="MenuItem_Click"/>
                 <MenuItem Header="Hàng thành phẩm" Click="MenuItem_Click"/>
                 <MenuItem Header="Hoa hồng hàng / dịch vụ" Click="MenuItem_Click"/>
@@ -53,8 +53,6 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Row="1" Name="tct_body">
-            
-        </TabControl>
+        <TabControl Grid.Row="1" Name="tct_body" Margin="2"/>
     </Grid>
 </Window>

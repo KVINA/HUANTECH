@@ -59,7 +59,7 @@ namespace HUAN_TECH
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength() });
 
-            var textblock = new TextBlock() { Text = header, Margin = new Thickness(2) };
+            var textblock = new TextBlock() { Text = header, Margin = new Thickness(2) ,FontFamily = new FontFamily("Segoe UI"),Foreground = Brushes.Teal, FontWeight = FontWeights.DemiBold, FontSize = 12 };
             grid.Children.Add(textblock);
 
             var border = new Border() { Cursor = Cursors.Hand, DataContext = tabitem };

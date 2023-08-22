@@ -2936,19 +2936,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KVINA\\.nuget\\packages\\": {}
+    "C:\\Users\\MV210608\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KVINA\\Documents\\GitHub\\HUANTECH\\HUAN_TECH\\HUAN_TECH.csproj",
+      "projectUniqueName": "D:\\06.ME\\Github\\HUAN_TECH\\HUAN_TECH.csproj",
       "projectName": "HUAN_TECH",
-      "projectPath": "C:\\Users\\KVINA\\Documents\\GitHub\\HUANTECH\\HUAN_TECH\\HUAN_TECH.csproj",
-      "packagesPath": "C:\\Users\\KVINA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KVINA\\Documents\\GitHub\\HUANTECH\\HUAN_TECH\\obj\\",
+      "projectPath": "D:\\06.ME\\Github\\HUAN_TECH\\HUAN_TECH.csproj",
+      "packagesPath": "C:\\Users\\MV210608\\.nuget\\packages\\",
+      "outputPath": "D:\\06.ME\\Github\\HUAN_TECH\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\KVINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MV210608\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2962,8 +2967,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\KVINA\\Documents\\GitHub\\HUANTECH\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\KVINA\\Documents\\GitHub\\HUANTECH\\Models\\Models.csproj"
+            "D:\\06.ME\\Github\\Models\\Models.csproj": {
+              "projectPath": "D:\\06.ME\\Github\\Models\\Models.csproj"
             }
           }
         }
@@ -3010,7 +3015,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

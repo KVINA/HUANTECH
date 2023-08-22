@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HUAN_TECH.User_Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" FontFamily="Segoe UI"
+             d:DesignHeight="450" d:DesignWidth="800">    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,12 +15,8 @@
 
         <Grid>
             <Grid.Resources>
-                <Style TargetType="TextBox" BasedOn="{StaticResource  MaterialDesignOutlinedTextBox}">
-                    <Setter Property="Margin" Value="2"/>
-                </Style>
-
-                <Style TargetType="StackPanel">
-                    <Setter Property="Margin" Value="2"/>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <Setter Property="Margin" Value="5"/>
                 </Style>
             </Grid.Resources>
 
@@ -30,11 +26,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Width="150" materialDesign:HintAssist.Hint="Group Name"/>
+            <TextBox Name="txt_groupname" Width="150" materialDesign:HintAssist.Hint="Group Name"/>
 
-            <TextBox Grid.Column="1" materialDesign:HintAssist.Hint="Description"/>
+            <TextBox Name="txt_description" Grid.Column="1" materialDesign:HintAssist.Hint="Description"/>
 
-            <Button Width="100" Content="Add" Grid.Column="2"/>
+            <Button Name="btn_add" Click="btn_add_Click" Margin="5" Width="100" Content="Add" Grid.Column="2"/>
         </Grid>
 
         <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="1" IsReadOnly="True"/>
