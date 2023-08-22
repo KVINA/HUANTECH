@@ -1,0 +1,13 @@
+//value="Data Source=DESKTOP-RG9BJ2P;Initial Catalog=KVINA;Integrated Security=True;User ID=@Username; Password = @Password;" />
+{
+  "ServerInfo": [
+    {
+      "NameServer": "HUANTECH",
+      "DataSource": "DESKTOP-RG9BJ2P",
+      "InitialCatalog": "HUANTECH",
+      "IntegratedSecurity": "True",
+      "UserID": "sa",
+      "Password": "Fx1y6uytuh@"
+    }
+  ]
+}
