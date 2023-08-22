@@ -1,7 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using HUAN_TECH.View;
+using Microsoft.IdentityModel.Tokens;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,5 +75,15 @@ namespace HUAN_TECH.User_Controls
             }
         }
         #endregion
+
+        private void Event_EditItem(object sender, RoutedEventArgs e)
+        {
+            if (dtg_commodity_group.SelectedItem is DataRowView datarow)
+            {
+                var wd = new Edit_commodity_group(datarow);
+                wd.ShowDialog();
+                Load_commodity_group();
+            }
+        }
     }
 }

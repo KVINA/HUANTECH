@@ -33,6 +33,13 @@
             <Button Name="btn_add" Click="btn_add_Click" Margin="5" Width="100" Content="Add" Grid.Column="2"/>
         </Grid>
 
-        <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="1" IsReadOnly="True"/>
+        <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="1" IsReadOnly="True">
+            <DataGrid.ContextMenu>
+                <ContextMenu Style="{x:Null}">
+                    <MenuItem Header="Edit" Click="Event_EditItem" Style="{x:Null}" Icon="{materialDesign:PackIcon Kind=Edit}" Cursor="Hand"/>
+                    <MenuItem Header="Delete" Style="{x:Null}" Icon="{materialDesign:PackIcon Kind=Delete}" Cursor="Hand"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </UserControl>
