@@ -59,7 +59,7 @@ namespace HUAN_TECH {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/HUAN_TECH;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HUAN_TECH;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
