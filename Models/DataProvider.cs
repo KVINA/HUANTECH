@@ -26,7 +26,10 @@ namespace Models
             {
                 foreach (var item in ListServer)
                 {
-                    DIC_SERVER.Add(item.NameServer, item);
+                    if (!string.IsNullOrEmpty(item.NameServer))
+                    {
+                        DIC_SERVER.Add(item.NameServer, item);
+                    }                    
                 }
             }
         }        
@@ -64,7 +67,7 @@ namespace Models
                     {
                         conn.Open();
                         SqlCommand cmd = new SqlCommand(query, conn);
-                        if (parameter != null)
+                        if (parameter != null && parameter.Length > 0)
                         {
                             var listPara = query.Split(' ');
                             int i = 0;
@@ -96,7 +99,7 @@ namespace Models
             }
         }
 
-        public bool ExecuteNonquery(out string? exception, SERVER server, string query, object[]? parameter = null)
+        public int ExecuteNonquery(out string? exception, SERVER server, string query, object[]? parameter = null)
         {
             try
             {
@@ -109,7 +112,7 @@ namespace Models
                     {
                         conn.Open();
                         SqlCommand cmd = new SqlCommand(query, conn);
-                        if (parameter != null)
+                        if (parameter != null && parameter.Length > 0)
                         {
                             var listPara = query.Split(' ');
                             int i = 0;
@@ -125,18 +128,18 @@ namespace Models
                         res = cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    return res > 0;
+                    return res;
                 }
                 else
                 {
                     exception = "ERROR: Chuỗi kết nối không hợp lệ.";
-                    return false;
+                    return 0;
                 }
             }
             catch (Exception ex)
             {
                 exception = ex.Message;
-                return false;
+                return 0;
             }
         }
     }

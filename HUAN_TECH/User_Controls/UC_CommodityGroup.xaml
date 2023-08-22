@@ -36,8 +36,8 @@
         <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="1" IsReadOnly="True">
             <DataGrid.ContextMenu>
                 <ContextMenu Style="{x:Null}">
-                    <MenuItem Header="Edit" Click="Event_EditItem" Style="{x:Null}" Icon="{materialDesign:PackIcon Kind=Edit}" Cursor="Hand"/>
-                    <MenuItem Header="Delete" Style="{x:Null}" Icon="{materialDesign:PackIcon Kind=Delete}" Cursor="Hand"/>
+                    <MenuItem Header="Edit" Click="Event_EditItem" Icon="{materialDesign:PackIcon Kind=Edit}" Cursor="Hand"/>
+                    <MenuItem Header="Delete" Icon="{materialDesign:PackIcon Kind=Delete}" Cursor="Hand"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

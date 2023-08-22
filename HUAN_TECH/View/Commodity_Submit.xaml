@@ -1,0 +1,45 @@
+﻿<Window x:Class="HUAN_TECH.View.Commodity_Submit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:HUAN_TECH.View"
+        mc:Ignorable="d" WindowStyle="ToolWindow" 
+        Title="Commodity_Submit" Height="300" Width="500">
+    <Grid Name="grid_body">
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ComboBox Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Nhóm hàng"/>
+        <TextBox Name="txt_commodityName" materialDesign:HintAssist.Hint="Tên sản phẩm" Grid.Column="1"/>
+
+        <TextBox Name="txt_description" materialDesign:HintAssist.Hint="Mô tả sản phẩm" Grid.Row="1" Grid.ColumnSpan="2"/>
+            
+        <TextBox Name="txt_price" materialDesign:HintAssist.Hint="Giá bán" Grid.Row="2"/>
+        <TextBox Name="txt_quantity" materialDesign:HintAssist.Hint="Số lượng tồn kho" Grid.Row="2" Grid.Column="1"/>
+
+        <Button Name="btn_submit" Content="Submit" Click="Event_Submit" Grid.Row="3" Grid.ColumnSpan="2" Margin="5"/>
+    </Grid>
+</Window>

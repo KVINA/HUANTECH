@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HUAN_TECH"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="700" Width="1200">
     <Grid>
         <Grid.Resources>
             <Style TargetType="MenuItem" BasedOn="{x:Null}">
@@ -41,8 +41,6 @@
             <MenuItem Header="_Khai báo">
                 <MenuItem Tag="UC_CommodityGroup" Header="Danh mục nhóm hàng" Click="MenuItem_Click"/>
                 <MenuItem Tag="UC_Commodity" Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
-                <MenuItem Header="Danh mục nhóm đối tác" Click="MenuItem_Click"/>
-                <MenuItem Header="Danh mục đối tác" Click="MenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="_Thuộc tính hàng hóa">

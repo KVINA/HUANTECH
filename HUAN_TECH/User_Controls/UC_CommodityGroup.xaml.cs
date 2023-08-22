@@ -1,4 +1,5 @@
 ﻿using HUAN_TECH.View;
+using HUAN_TECH.ViewModels;
 using Microsoft.IdentityModel.Tokens;
 using Models;
 using System;
@@ -32,8 +33,7 @@ namespace HUAN_TECH.User_Controls
 
         void Load_commodity_group()
         {
-            string query = "Select * From commodity_group";
-            var data = DataProvider.Instance.ExecuteQuery(out string? ex, DataProvider.SERVER.HUANTECH, query);
+            var data = CommodityGroup.Table_CommodityGroup();
             if (data != null) 
             {
                 dtg_commodity_group.ItemsSource = data.DefaultView;
@@ -62,7 +62,7 @@ namespace HUAN_TECH.User_Controls
                 string query = "Insert Into [commodity_group] ([GroupName],[Description],[UserUpdate]) Values ( @GroupName , @Description , @UserUpdate )";
                 var parameter = new object[] {txt_groupname.Text.Trim(),txt_description.Text.Trim(), username };
                 var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
-                if (res)
+                if (res > 0)
                 {
                     Load_commodity_group();
                     MessageBox.Show("Thêm thành công nhóm hàng");

@@ -13,14 +13,21 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <WrapPanel>
-            <TextBox materialDesign:HintAssist.Hint="Tên hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <ComboBox materialDesign:HintAssist.Hint="Nhóm hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
-            <Button Content="Search" Margin="5" Width="100"/>
-            <Button Content="Refresh" Margin="5" Width="100"/>
+        <WrapPanel>            
+            <ComboBox Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Nhóm hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+            <TextBox Name="txt_commodityName" materialDesign:HintAssist.Hint="Tên hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <Button Content="Search" Click="Event_Search" Margin="5" Width="100"/>
+            <Button Content="Add" Click="Event_Add" Margin="5" Width="100"/>
         </WrapPanel>
-        
-        <DataGrid Name="dtg_commodity" Grid.Row="1"/>
+
+        <DataGrid IsReadOnly="True" Name="dtg_commodity" Grid.Row="1">
+            <DataGrid.ContextMenu>
+                <ContextMenu Style="{x:Null}">
+                    <MenuItem Header="Edit" Click="Event_Edit" Icon="{materialDesign:PackIcon Kind=Edit}"/>
+                    <MenuItem Header="Delete" Click="Event_Delete" Icon="{materialDesign:PackIcon Kind=Delete}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
     
 </UserControl>

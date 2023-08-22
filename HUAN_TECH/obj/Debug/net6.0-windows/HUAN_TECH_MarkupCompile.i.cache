@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\06.ME\Github\HUAN_TECH\obj\Debug\net6.0-windows\
+D:\07.Project\HUAN_TECH\obj\Debug\net6.0-windows\
 HUAN_TECH
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\06.ME\Github\HUAN_TECH\App.xaml
-2-2074131668
+D:\07.Project\HUAN_TECH\App.xaml
+5-691646198
 
-7-1158533945
-22312319335
-MainWindow.xaml;User_Controls\UC_CommodityGroup.xaml;
+12-341121626
+223-929276359
+MainWindow.xaml;User_Controls\UC_Commodity.xaml;User_Controls\UC_CommodityGroup.xaml;View\Commodity_Submit.xaml;View\Edit_commodity_group.xaml;
 
 True
 

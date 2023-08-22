@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x587QdPcFjZPwuOZRGd4SqrDZWLHgtzqpviSCHTDIa0EieaW8tuF5znFFLiNVDYbTrNLlwwxp/e80iGXgrQZbw==",
+  "dgSpecHash": "hw1byE1SDABFvG4OUdheP6kjhVfI91FyyDfh3KlyWT05VKQnVTggw+q+BIBwVE19GtOWdTsxnQzq6UgBEMtIPA==",
   "success": true,
-  "projectFilePath": "D:\\06.ME\\Github\\HUAN_TECH\\HUAN_TECH.csproj",
+  "projectFilePath": "D:\\07.Project\\HUAN_TECH\\HUAN_TECH.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MV210608\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\MV210608\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -36,3 +36,16 @@ D:\06.ME\Github\Models\obj\Debug\net6.0\Models.dll
 D:\06.ME\Github\Models\obj\Debug\net6.0\refint\Models.dll
 D:\06.ME\Github\Models\obj\Debug\net6.0\Models.pdb
 D:\06.ME\Github\Models\obj\Debug\net6.0\ref\Models.dll
+D:\07.Project\Models\bin\Debug\net6.0\Config.json
+D:\07.Project\Models\bin\Debug\net6.0\Models.deps.json
+D:\07.Project\Models\bin\Debug\net6.0\Models.dll
+D:\07.Project\Models\bin\Debug\net6.0\Models.pdb
+D:\07.Project\Models\obj\Debug\net6.0\Models.csproj.AssemblyReference.cache
+D:\07.Project\Models\obj\Debug\net6.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\07.Project\Models\obj\Debug\net6.0\Models.AssemblyInfoInputs.cache
+D:\07.Project\Models\obj\Debug\net6.0\Models.AssemblyInfo.cs
+D:\07.Project\Models\obj\Debug\net6.0\Models.csproj.CoreCompileInputs.cache
+D:\07.Project\Models\obj\Debug\net6.0\Models.dll
+D:\07.Project\Models\obj\Debug\net6.0\refint\Models.dll
+D:\07.Project\Models\obj\Debug\net6.0\Models.pdb
+D:\07.Project\Models\obj\Debug\net6.0\ref\Models.dll

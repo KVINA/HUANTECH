@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\06.ME\\Github\\Models\\Models.csproj": {}
+    "D:\\07.Project\\Models\\Models.csproj": {}
   },
   "projects": {
-    "D:\\06.ME\\Github\\Models\\Models.csproj": {
+    "D:\\07.Project\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\06.ME\\Github\\Models\\Models.csproj",
+        "projectUniqueName": "D:\\07.Project\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "D:\\06.ME\\Github\\Models\\Models.csproj",
+        "projectPath": "D:\\07.Project\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\MV210608\\.nuget\\packages\\",
-        "outputPath": "D:\\06.ME\\Github\\Models\\obj\\",
+        "outputPath": "D:\\07.Project\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
