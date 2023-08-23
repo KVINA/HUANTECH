@@ -34,12 +34,17 @@
         <Menu>
             <MenuItem Header="_Hệ thống">
                 <MenuItem Header="Danh sách menu" Click="MenuItem_Click"/>
-                <MenuItem Header="Đăng xuất" Click="MenuItem_Click"/>
+                <MenuItem Header="Đăng xuất" Click="Event_Logout"/>
                 <MenuItem Header="Thoát" Click="MenuItem_Click"/>
             </MenuItem>
             
             <MenuItem Header="_Khai báo">
                 <MenuItem Tag="UC_CommodityGroup" Header="Danh mục nhóm hàng" Click="MenuItem_Click"/>
+                <MenuItem Tag="UC_Commodity" Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Quản lý kho">
+                <MenuItem Tag="UC_ImportStock" Header="Nhập kho" Click="MenuItem_Click"/>
                 <MenuItem Tag="UC_Commodity" Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
             </MenuItem>
 

@@ -42,7 +42,7 @@
             <PasswordBox x:Name="txt_password" materialDesign:HintAssist.Hint="Password" Grid.Row="2"/>
             
             <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="5">
-                <ToggleButton Margin="2" Name="tgl_admin"/>
+                <ToggleButton Margin="2" Name="tgl_admin" Cursor="Hand"/>
                 <TextBlock Text="Administration" Margin="2"/>
             </WrapPanel>
             

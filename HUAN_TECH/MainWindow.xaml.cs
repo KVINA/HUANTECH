@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,19 @@ namespace HUAN_TECH
             {
                 tct_body.Items.Remove(tabitem);
             }
+        }
+
+        private void Event_Logout(object sender, RoutedEventArgs e)
+        {
+            var wd = new Login();   
+            this.Close();
+            if (ServiceProvider.Account != null)
+            {
+                wd.txt_username.Text = ServiceProvider.Account.Username;
+                wd.txt_password.Password = ServiceProvider.Account.Password;
+                ServiceProvider.Set_Logout();
+            }
+            wd.Show();
         }
     }
 }

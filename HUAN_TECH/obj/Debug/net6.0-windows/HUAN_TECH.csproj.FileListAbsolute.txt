@@ -334,3 +334,5 @@ C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows
 C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\ref\HUAN_TECH.dll
 C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\Login.g.cs
 C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\Login.baml
+C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ImportStock.g.cs
+C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ImportStock.baml

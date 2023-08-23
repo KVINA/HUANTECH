@@ -18,6 +18,8 @@ namespace HUAN_TECH
                     return new UC_CommodityGroup();
                 case "UC_Commodity":
                     return new UC_Commodity();
+                case "UC_ImportStock":
+                    return new UC_ImportStock();
                 default:
                     return null;
             }
