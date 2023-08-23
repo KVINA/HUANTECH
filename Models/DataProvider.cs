@@ -13,7 +13,6 @@ namespace Models
     public class DataProvider
     {
         private static DataProvider? instance;
-
         public static DataProvider Instance { get { if (instance == null) instance = new DataProvider(); return instance; } private set => instance = value; }
         
         private Dictionary<string,ServerInfo> DIC_SERVER = new Dictionary<string,ServerInfo>();

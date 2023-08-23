@@ -58,20 +58,29 @@ namespace HUAN_TECH.User_Controls
             }
             else
             {
-                string username = Environment.UserName;
-                string query = "Insert Into [commodity_group] ([GroupName],[Description],[UserUpdate]) Values ( @GroupName , @Description , @UserUpdate )";
-                var parameter = new object[] {txt_groupname.Text.Trim(),txt_description.Text.Trim(), username };
-                var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
-                if (res > 0)
+                if (ServiceProvider.Account != null)
                 {
-                    Load_commodity_group();
-                    MessageBox.Show("Thêm thành công nhóm hàng");
-                    txt_groupname.Text = null; txt_description.Text = null;
+                    string? username = ServiceProvider.Account.Username;
+                    string query = "Insert Into [commodity_group] ([GroupName],[Description],[UserUpdate]) Values ( @GroupName , @Description , @UserUpdate )";
+                    var parameter = new object[] { txt_groupname.Text.Trim(), txt_description.Text.Trim(), username };
+                    var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
+                    if (res > 0)
+                    {
+                        Load_commodity_group();
+                        MessageBox.Show("Thêm thành công nhóm hàng");
+                        txt_groupname.Text = null; txt_description.Text = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"ERROR: INSERT LOSE{Environment.NewLine}{ex}");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show($"ERROR: INSERT LOSE{Environment.NewLine}{ex}");
-                }                
+                    MessageBox.Show("Lỗi đăng nhập. Vui lòng khởi động lại chương trình");
+                    Application.Current.Shutdown();
+                }
+                          
             }
         }
         #endregion

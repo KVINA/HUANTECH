@@ -1,4 +1,5 @@
 ﻿using HUAN_TECH.ViewModels;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,37 +48,18 @@ namespace HUAN_TECH
             }
             else
             {
-                if (isadmin)
+                var res = ServiceProvider.Set_Login(username, password, isadmin);
+                if (res)
                 {
-                    if (username == "administrator" && password == "admin123")
-                    {
-                        var wd = new MainWindow();
-                        this.Close();
-                        wd.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username hoặc Passwrod không chính xác.");
-                    }
+                    var wd = new MainWindow();
+                    this.Close();
+                    wd.Show();
                 }
                 else
                 {
-                    var res = Account.IsCheckLogin(username, password);
-                    if (res)
-                    {
-                        var wd = new MainWindow();
-                        this.Close();
-                        wd.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username hoặc Passwrod không chính xác.");
-                    }
+                    MessageBox.Show("Username hoặc Passwrod không chính xác.");
                 }
             }
-
-
-           
         }
     }
 }
