@@ -42,11 +42,11 @@
             <PasswordBox x:Name="txt_password" materialDesign:HintAssist.Hint="Password" Grid.Row="2"/>
             
             <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="5">
-                <ToggleButton Margin="2"/>
+                <ToggleButton Margin="2" Name="tgl_admin"/>
                 <TextBlock Text="Administration" Margin="2"/>
             </WrapPanel>
             
-            <Button Content="Login" Grid.Row="4" Margin="5"/>
+            <Button Content="Login" Click="Event_Login" Grid.Row="4" Margin="5"/>
             
             <Button Content="Exit" Click="Event_Exit" Grid.Row="5" Margin="5"/>
         </Grid>

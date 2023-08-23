@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HUAN_TECH.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,51 @@ namespace HUAN_TECH
         private void Event_Exit(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Event_Login(object sender, RoutedEventArgs e)
+        {
+            bool isadmin = tgl_admin.IsChecked.Value;
+            string username = txt_username.Text;
+            string password = txt_password.Password;
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Hãy nhập vào Usernam và Password.");
+            }
+            else
+            {
+                if (isadmin)
+                {
+                    if (username == "administrator" && password == "admin123")
+                    {
+                        var wd = new MainWindow();
+                        this.Close();
+                        wd.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username hoặc Passwrod không chính xác.");
+                    }
+                }
+                else
+                {
+                    var res = Account.IsCheckLogin(username, password);
+                    if (res)
+                    {
+                        var wd = new MainWindow();
+                        this.Close();
+                        wd.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username hoặc Passwrod không chính xác.");
+                    }
+                }
+            }
+
+
+           
         }
     }
 }
