@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\07.Project\HUAN_TECH\obj\Debug\net6.0-windows\
+C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\
 HUAN_TECH
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\07.Project\HUAN_TECH\App.xaml
-5-691646198
+C:\Users\Big-Swiftlet\Desktop\Github\HUANTECH\HUAN_TECH\App.xaml
+6819498439
 
-12-341121626
-223-929276359
-MainWindow.xaml;User_Controls\UC_Commodity.xaml;User_Controls\UC_CommodityGroup.xaml;View\Commodity_Submit.xaml;View\Edit_commodity_group.xaml;
+13957302732
+223-109774237
+Login.xaml;MainWindow.xaml;User_Controls\UC_Commodity.xaml;User_Controls\UC_CommodityGroup.xaml;View\Commodity_Submit.xaml;View\Edit_commodity_group.xaml;
 
 True
 
