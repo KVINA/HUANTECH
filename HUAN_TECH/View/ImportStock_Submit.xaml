@@ -5,42 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HUAN_TECH.View"
         xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" WindowStyle="ToolWindow" ResizeMode="NoResize" 
+        mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen"
-        Title="ImportStock_Submit" Height="450" Width="300">
-    <Grid Name="grid_body">
-        <Grid.Resources>
-            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
+        Title="ImportStock_Submit" Height="600" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="grid_body">
+            <Grid.Resources>
+                <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
 
-            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
 
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
-        </Grid.Resources>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <DatePicker Name="dpk_importDate" materialDesign:HintAssist.Hint="Ngày nhập hàng"/>
-        <ComboBox Name="txt_commodityGroup" DropDownClosed="txt_commodityGroup_DropDownClosed" materialDesign:HintAssist.Hint="Nhóm hàng hóa" Grid.Row="1"/>
-        <ComboBox IsEditable="True" Name="txt_commodityName" materialDesign:HintAssist.Hint="Tên hàng hóa"  Grid.Row="2"/>
-        <TextBox Name="txt_importFrom" materialDesign:HintAssist.Hint="Nơi nhập hàng"  Grid.Row="3"/>
-        <TextBox Name="txt_importQuantity" materialDesign:HintAssist.Hint="Số lượng nhập"  Grid.Row="4"/>
-        <TextBox Name="txt_importPrice" materialDesign:HintAssist.Hint="Đơn giá"  Grid.Row="5"/>
-        <Button Click="Button_Click" Content="Import to stock" Grid.Row="6" Margin="5"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DatePicker Name="dpk_importDate" materialDesign:HintAssist.Hint="Ngày nhập hàng"/>
+            <ComboBox Name="txt_commodityGroup" DropDownClosed="txt_commodityGroup_DropDownClosed" materialDesign:HintAssist.Hint="Nhóm hàng hóa" Grid.Row="1"/>
+            <ComboBox IsEditable="True" Name="txt_commodityName" materialDesign:HintAssist.Hint="Tên hàng hóa"  Grid.Row="2"/>
+            <TextBox Name="txt_importFrom" materialDesign:HintAssist.Hint="Nơi nhập hàng"  Grid.Row="3"/>
+            <TextBox Name="txt_importQuantity" materialDesign:HintAssist.Hint="Số lượng nhập"  Grid.Row="4"/>
+            <TextBox Name="txt_importPrice" materialDesign:HintAssist.Hint="Đơn giá"  Grid.Row="5"/>
+
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn_add" Click="Button_Add" Content="Add" Margin="5"/>
+                <Button Name="btn_edit" Content="Edit" Grid.Column="1" Margin="5"/>
+                <Button Name="btn_cancel" Content="Cancel" Grid.Column="2" Margin="5"/>
+            </Grid>
+            
+        </Grid>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel>
+                <Button Content="{materialDesign:PackIcon Kind=HomeGroupPlus}" Margin="5"/>
+                <TextBlock Text="Nhấp vào đây để đồng bộ dữ liệu vào kho, sau khi đồng bộ dữ liệu vào kho sẽ không thể sửa." VerticalAlignment="Center"/>
+            </WrapPanel>
+
+            <DataGrid Name="dtg_waitImport" Grid.Row="1" Margin="5" IsReadOnly="True" AutoGeneratedColumns="dtg_waitImport_AutoGeneratedColumns">
+                <DataGrid.Resources>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Style>
+                </DataGrid.Resources>
+                
+                <DataGrid.ContextMenu>
+                    <ContextMenu Style="{x:Null}">
+                        <MenuItem Header="Edit" Icon="{materialDesign:PackIcon Kind=Edit}"/>
+                        <MenuItem Header="Delete" Icon="{materialDesign:PackIcon Kind=Delete}"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </Grid>
+        
     </Grid>
 </Window>

@@ -93,5 +93,10 @@ namespace HUAN_TECH
             }
             wd.Show();
         }
+
+        private void Event_Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

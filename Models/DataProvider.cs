@@ -53,7 +53,7 @@ namespace Models
             }
         }
 
-        public DataTable? ExecuteQuery(out string? exception,SERVER server, string query, object[]? parameter = null)
+        public DataTable? ExecuteQuery(out string? exception,SERVER server, string query, object?[]? parameter = null)
         {
             try
             {

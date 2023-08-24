@@ -35,7 +35,7 @@
             <MenuItem Header="_Hệ thống">
                 <MenuItem Header="Danh sách menu" Click="MenuItem_Click"/>
                 <MenuItem Header="Đăng xuất" Click="Event_Logout"/>
-                <MenuItem Header="Thoát" Click="MenuItem_Click"/>
+                <MenuItem Header="Thoát" Click="Event_Exit"/>
             </MenuItem>
             
             <MenuItem Header="_Khai báo">

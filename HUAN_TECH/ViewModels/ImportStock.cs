@@ -1,7 +1,9 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +11,36 @@ namespace HUAN_TECH.ViewModels
 {
     public class ImportStock
     {
+        public enum ImportStatus
+        {
+            WaitImport = 0,
+            Complated = 1
+        }
+        public static DataTable? Table_ImportStack(ImportStatus status )
+        {
+            int? importStatus;
+            switch (status)
+            {
+                case ImportStatus.WaitImport:
+                    importStatus = 0;
+                    break;
+                case ImportStatus.Complated:
+                    importStatus = 1;
+                    break;
+                default:
+                    importStatus = null;
+                    break;
+            }
+            string query = "SELECT [SerialID],[ImportDate],[GroupName],[CommodityName],[ImportFrom],"+
+                "[ImportQuantity],[ImportPrice],[ImportStatus],[UserImport],A.[TimeUpdate]" +
+                "FROM [HUANTECH].[dbo].[import_stock] As A  " +
+                "Inner Join commodity As B On A.CommodityId = B.CommodityId " +
+                "Inner Join commodity_group As C On B.GroupId = C.GroupId " +
+                "Where [ImportStatus] = @ImportStatus ";
+            var parameter = new object?[] { importStatus };
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception,DataProvider.SERVER.HUANTECH,query,new object?[] {importStatus});
+            return data;
+        }
         public static bool ImportStock_Insert(dbo_ImportStock item)
         {
             string query = "Insert Into [import_stock] ([ImportDate],[CommodityId],[ImportFrom],[ImportQuantity],[ImportPrice],[UserImport]) "+
