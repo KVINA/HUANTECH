@@ -38,7 +38,7 @@ namespace HUAN_TECH
 
         private void Event_Login(object sender, RoutedEventArgs e)
         {
-            bool isadmin = tgl_admin.IsChecked.Value;
+            bool isadmin = tgl_admin.IsChecked is bool? tgl_admin.IsChecked.Value: false;
             string username = txt_username.Text;
             string password = txt_password.Password;
 

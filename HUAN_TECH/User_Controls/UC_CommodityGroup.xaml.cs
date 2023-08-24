@@ -62,7 +62,7 @@ namespace HUAN_TECH.User_Controls
                 {
                     string? username = ServiceProvider.Account.Username;
                     string query = "Insert Into [commodity_group] ([GroupName],[Description],[UserUpdate]) Values ( @GroupName , @Description , @UserUpdate )";
-                    var parameter = new object[] { txt_groupname.Text.Trim(), txt_description.Text.Trim(), username };
+                    var parameter = new object?[] { txt_groupname.Text.Trim(), txt_description.Text.Trim(), username };
                     var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
                     if (res > 0)
                     {

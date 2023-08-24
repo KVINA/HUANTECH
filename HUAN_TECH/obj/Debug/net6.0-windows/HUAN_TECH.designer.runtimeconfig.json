@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\Big-Swiftlet\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Big-Swiftlet\\.nuget\\packages"
+      "C:\\Users\\KVINA\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\KVINA\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

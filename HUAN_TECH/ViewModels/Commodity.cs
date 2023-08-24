@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -12,6 +13,23 @@ namespace HUAN_TECH.ViewModels
 {
     class Commodity
     {
+        public static DataTable? Get_ListCommodityName(int GroupID)
+        {
+            string query = "Select [CommodityName] From [commodity] Where [GroupId] = @GroupId ";      
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query , new object[] { GroupID });
+            return data;
+        }
+        public static int? Get_CommodityID(string CommodityName,int GroupID)
+        {
+            string query = "Select [CommodityId] From [commodity] Where [CommodityName] = @CommodityName And [GroupId] = @GroupId ";
+            var parameter = new object[] { CommodityName, GroupID };
+            var data = DataProvider.Instance.ExecuteScalar(out string? exception, DataProvider.SERVER.HUANTECH, query, parameter);
+            if (data != null)
+            {
+                return (int)data;
+            }
+            else { return null; }
+        }
         public static DataTable? Table_Commodity(string? GroupName = null, string? CommodityName = null)
         {
             string query = "SELECT [CommodityId] ,[GroupName],[CommodityName],[DescriptionCommodity],[CellingPrice],[StockQuantity],A.[TimeUpdate] " +
@@ -19,10 +37,10 @@ namespace HUAN_TECH.ViewModels
             string condition = "";
             object[] parmeter = new object[0];
             int i = 0;
-  
+
             if (!string.IsNullOrEmpty(GroupName))
             {
-                condition = string.IsNullOrEmpty(condition)? "Where [GroupName] = @GroupName " : "And [GroupName] = @GroupName ";
+                condition = string.IsNullOrEmpty(condition) ? "Where [GroupName] = @GroupName " : "And [GroupName] = @GroupName ";
                 i++;
                 Array.Resize(ref parmeter, i);
                 parmeter[i - 1] = GroupName;
@@ -56,7 +74,7 @@ namespace HUAN_TECH.ViewModels
             return res > 0;
         }
 
-        public static bool Delete_Commodity( int CommodityId)
+        public static bool Delete_Commodity(int CommodityId)
         {
             string query = $"Delete From [commodity] Where [CommodityId] = {CommodityId} ";
             var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query);

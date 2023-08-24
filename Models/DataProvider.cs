@@ -98,7 +98,7 @@ namespace Models
             }
         }
 
-        public int ExecuteNonquery(out string? exception, SERVER server, string query, object[]? parameter = null)
+        public int ExecuteNonquery(out string? exception, SERVER server, string query, object?[]? parameter = null)
         {
             try
             {

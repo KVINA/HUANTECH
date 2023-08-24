@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:HUAN_TECH.View"
+        xmlns:local="clr-namespace:HUAN_TECH.View" WindowStartupLocation="CenterOwner"
         mc:Ignorable="d" WindowStyle="ToolWindow" 
         Title="Commodity_Submit" Height="300" Width="500">
     <Grid Name="grid_body">
