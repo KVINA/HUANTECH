@@ -25,6 +25,9 @@
     <Compile Update="View\Edit_commodity_group.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ImportStock_Submit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Login.xaml">
@@ -46,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Edit_commodity_group.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ImportStock_Submit.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -1,5 +1,4 @@
-﻿using HUAN_TECH.View;
-using HUAN_TECH.ViewModels;
+﻿using HUAN_TECH.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HUAN_TECH.User_Controls
+namespace HUAN_TECH.View
 {
     /// <summary>
-    /// Interaction logic for UC_ImportStock.xaml
+    /// Interaction logic for ImportStock_Submit.xaml
     /// </summary>
-    public partial class UC_ImportStock : UserControl
+    public partial class ImportStock_Submit : Window
     {
-        public UC_ImportStock()
+        public ImportStock_Submit()
         {
             InitializeComponent();
             Load_commondity_group();
-            Load_import_stock();
         }
-        void Load_import_stock()
-        {
 
-        }
         void Load_commondity_group()
         {
             var data = CommodityGroup.Table_CommodityGroup();
@@ -45,12 +39,5 @@ namespace HUAN_TECH.User_Controls
                 txt_commodityGroup.ItemsSource = null;
             }
         }
-
-        private void Event_Import(object sender, RoutedEventArgs e)
-        {
-            var wd = new ImportStock_Submit();
-            wd.ShowDialog();
-            Load_import_stock();
-        }
-    }    
+    }
 }
