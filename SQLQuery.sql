@@ -2,6 +2,29 @@ Create DataBase HUANTECH
 GO
 use HUANTECH
 Go
+Create table export_stock
+(
+	ExportId int identity(0,1) primary key,	
+	BillId int,
+	CommodityId int,
+	UnitPrice decimal(10, 2) NULL,
+	Quantity int,
+	Note nvarchar(200),
+)
+Go
+Create table bill
+(
+	BillId int identity(0,1) primary key,
+	BillDate Date,
+	Seller varchar(10),
+	TotalCost decimal(10, 2),
+	Customer nvarchar(200),
+	Phone varchar(15),
+	HomeAddress nvarchar(200),
+	Email nvarchar(200),		
+	TimeUpdate datetime default GetDate()
+)
+Go
 Create table account
 (
 	SerialId int identity(0,1),

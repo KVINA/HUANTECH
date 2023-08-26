@@ -13,7 +13,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <WrapPanel>            
+        <WrapPanel>
             <ComboBox Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Nhóm hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
             <TextBox Name="txt_commodityName" materialDesign:HintAssist.Hint="Tên hàng" Width="200" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             <Button Content="Search" Click="Event_Search" Margin="5" Width="100"/>

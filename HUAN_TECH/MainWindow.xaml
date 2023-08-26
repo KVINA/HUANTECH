@@ -33,7 +33,7 @@
         
         <Menu>
             <MenuItem Header="_Hệ thống">
-                <MenuItem Header="Danh sách menu" Click="MenuItem_Click"/>
+                <MenuItem Header="Quản lý tài khoản" Click="MenuItem_Click"/>
                 <MenuItem Header="Đăng xuất" Click="Event_Logout"/>
                 <MenuItem Header="Thoát" Click="Event_Exit"/>
             </MenuItem>
@@ -45,13 +45,12 @@
 
             <MenuItem Header="_Quản lý kho">
                 <MenuItem Tag="UC_ImportStock" Header="Nhập kho" Click="MenuItem_Click"/>
-                <MenuItem Tag="UC_Commodity" Header="Danh mục hàng hóa" Click="MenuItem_Click"/>
+                <MenuItem Tag="UC_ExportStock" Header="Xuất kho" Click="MenuItem_Click"/>
             </MenuItem>
 
-            <MenuItem Header="_Thuộc tính hàng hóa">
-                <MenuItem Header="Mẫu thành phẩm" Click="MenuItem_Click"/>
-                <MenuItem Header="Hàng thành phẩm" Click="MenuItem_Click"/>
-                <MenuItem Header="Hoa hồng hàng / dịch vụ" Click="MenuItem_Click"/>
+            <MenuItem Header="_Báo cáo">
+                <MenuItem Header="Công nợ" Click="MenuItem_Click"/>
+                <MenuItem Header="Doanh thu tháng" Click="MenuItem_Click"/>
                 <MenuItem Header="Thời hạn sử dụng" Click="MenuItem_Click"/>
                 <MenuItem Header="Thời hạn nhắc mua" Click="MenuItem_Click"/>
             </MenuItem>

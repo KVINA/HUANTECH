@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
 
         <WrapPanel>
-            <DatePicker Margin="2" materialDesign:HintAssist.Hint="Import Date" Width="150" Name="dpk_importdate" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
-            <ComboBox Margin="2" Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Comodity Name" Style="{StaticResource MaterialDesignOutlinedComboBox}" Width="150"/>
+            <DatePicker Margin="2" materialDesign:HintAssist.Hint="Ngày nhập" Width="150" Name="dpk_importdate" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <ComboBox Margin="2" Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Nhóm hàng" Style="{StaticResource MaterialDesignOutlinedComboBox}" Width="150"/>
             <Button Content="Search" Margin="2"/>
             <Button Click="Event_Import" Content="Import stock" Margin="2"/>
         </WrapPanel>
