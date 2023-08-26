@@ -1,15 +1,15 @@
---Create DataBase HUANTECH
+Create DataBase HUANTECH
 GO
 use HUANTECH
 Go
---Create table account
---(
---	SerialId int identity(0,1),
---	Username varchar(10) primary key,
---	Password nvarchar(50),
---	Roles nvarchar(100),
---	Status int default 0
---)
+Create table account
+(
+	SerialId int identity(0,1),
+	Username varchar(10) primary key,
+	Password nvarchar(50),
+	Roles nvarchar(100),
+	Status int default 0
+)
 Go
 Create table commodity_group
 (

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -16,7 +17,7 @@ namespace HUAN_TECH.ViewModels
             WaitImport = 0,
             Complated = 1
         }
-        public static DataTable? Table_ImportStack(ImportStatus status )
+        public static DataTable? Table_ImportStack(ImportStatus status, DateTime? ImportDate = null, string? CommodityName = null)
         {
             int? importStatus;
             switch (status)
@@ -31,15 +32,34 @@ namespace HUAN_TECH.ViewModels
                     importStatus = null;
                     break;
             }
-            string query = "SELECT [SerialID],[ImportDate],[GroupName],[CommodityName],[ImportFrom],"+
+
+            if (importStatus != null)
+            {
+                string query = "SELECT [SerialID],[ImportDate],[GroupName],[CommodityName],[ImportFrom]," +
                 "[ImportQuantity],[ImportPrice],[ImportStatus],[UserImport],A.[TimeUpdate]" +
                 "FROM [HUANTECH].[dbo].[import_stock] As A  " +
                 "Inner Join commodity As B On A.CommodityId = B.CommodityId " +
                 "Inner Join commodity_group As C On B.GroupId = C.GroupId " +
-                "Where [ImportStatus] = @ImportStatus ";
-            var parameter = new object?[] { importStatus };
-            var data = DataProvider.Instance.ExecuteQuery(out string? exception,DataProvider.SERVER.HUANTECH,query,new object?[] {importStatus});
-            return data;
+                $"Where [ImportStatus] = {importStatus} ";
+
+                if (ImportDate !=null && ImportDate is DateTime date)
+                {
+                    query += $"And [ImportDate] = '{date.ToString("yyyy-MM-dd")}' ";
+                }
+
+                if (!string.IsNullOrEmpty(CommodityName))
+                {
+                    query += $"And [CommodityName] = '{CommodityName}' ";
+                }
+
+                var parameter = new object?[] { importStatus };
+                var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query, new object?[] { importStatus });
+                return data;
+            }
+            else
+            {
+                return null;
+            }
         }
         public static bool ImportStock_Insert(dbo_ImportStock item)
         {

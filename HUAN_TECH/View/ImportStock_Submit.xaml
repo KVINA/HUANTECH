@@ -48,6 +48,16 @@
             <TextBox Name="txt_importPrice" materialDesign:HintAssist.Hint="Đơn giá"  Grid.Row="5"/>
 
             <Grid Grid.Row="6">
+                <Grid.Resources>
+                    <Style TargetType="Button" x:Key="Style_ButtomBiding" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName= btn_add, Path=IsEnabled}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -55,8 +65,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Name="btn_add" Click="Button_Add" Content="Add" Margin="5"/>
-                <Button Name="btn_edit" Content="Edit" Grid.Column="1" Margin="5"/>
-                <Button Name="btn_cancel" Content="Cancel" Grid.Column="2" Margin="5"/>
+                <Button Name="btn_edit" Style="{StaticResource Style_ButtomBiding}" Content="Edit" Grid.Column="1" Margin="5"/>
+                <Button Name="btn_cancel" Click="Button_Cancel" Style="{StaticResource Style_ButtomBiding}" Content="Cancel" Grid.Column="2" Margin="5"/>
             </Grid>
             
         </Grid>
@@ -68,7 +78,7 @@
             </Grid.RowDefinitions>
 
             <WrapPanel>
-                <Button Content="{materialDesign:PackIcon Kind=HomeGroupPlus}" Margin="5"/>
+                <Button Click="Event_UpdateStock" Content="{materialDesign:PackIcon Kind=HomeGroupPlus}" Margin="5"/>
                 <TextBlock Text="Nhấp vào đây để đồng bộ dữ liệu vào kho, sau khi đồng bộ dữ liệu vào kho sẽ không thể sửa." VerticalAlignment="Center"/>
             </WrapPanel>
 
@@ -81,7 +91,7 @@
                 
                 <DataGrid.ContextMenu>
                     <ContextMenu Style="{x:Null}">
-                        <MenuItem Header="Edit" Icon="{materialDesign:PackIcon Kind=Edit}"/>
+                        <MenuItem Header="Edit" Click="Event_GetDataSubmit" Icon="{materialDesign:PackIcon Kind=Edit}"/>
                         <MenuItem Header="Delete" Icon="{materialDesign:PackIcon Kind=Delete}"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>

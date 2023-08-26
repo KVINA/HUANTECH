@@ -30,7 +30,17 @@ namespace HUAN_TECH.User_Controls
         }
         void Load_import_stock()
         {
-
+            var datetime = string.IsNullOrEmpty(dpk_importdate.Text) ? null : dpk_importdate.SelectedDate;
+            var commodity = txt_commodityGroup.Text;
+            var data = ImportStock.Table_ImportStack( ImportStock.ImportStatus.Complated, datetime, commodity);
+            if (data != null)
+            {
+                dtg_importstock.ItemsSource = data.DefaultView;
+            }
+            else
+            {
+                dtg_importstock.ItemsSource = null;
+            }
         }
         void Load_commondity_group()
         {

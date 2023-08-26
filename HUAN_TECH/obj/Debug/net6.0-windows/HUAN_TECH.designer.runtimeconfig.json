@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\KVINA\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\KVINA\\.nuget\\packages"
+      "C:\\Users\\Developer Net\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Developer Net\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

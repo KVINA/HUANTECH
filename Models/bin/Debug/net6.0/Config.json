@@ -1,9 +1,9 @@
-//DESKTOP-RG9BJ2P - MVLT22Y005\SQLKVINA - DESKTOP-KTRF4TS
+//DESKTOP-RG9BJ2P - DESKTOP-0LM015E- DESKTOP-KTRF4TS
 {
   "ServerInfo": [
     {
       "NameServer": "HUANTECH",
-      "DataSource": "DESKTOP-RG9BJ2P",
+      "DataSource": "DESKTOP-0LM015E",
       "InitialCatalog": "HUANTECH",
       "IntegratedSecurity": "True",
       "UserID": "sa",
