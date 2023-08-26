@@ -510,3 +510,5 @@ D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\HUAN_TECH.genruntimeconfig
 D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\ref\HUAN_TECH.dll
 D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ExportStock.g.cs
 D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ExportStock.baml
+C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ExportStock.g.cs
+C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_ExportStock.baml

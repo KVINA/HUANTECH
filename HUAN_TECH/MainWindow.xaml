@@ -54,6 +54,10 @@
                 <MenuItem Header="Thời hạn sử dụng" Click="MenuItem_Click"/>
                 <MenuItem Header="Thời hạn nhắc mua" Click="MenuItem_Click"/>
             </MenuItem>
+
+            <MenuItem Header="_Tra cứu">
+                <MenuItem Header="Hóa đơn" Click="MenuItem_Click"/>
+            </MenuItem>
         </Menu>
 
         <TabControl Grid.Row="1" Name="tct_body" Margin="2"/>

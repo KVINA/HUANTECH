@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,12 @@ namespace HUAN_TECH.ViewModels
     {
     }
 
-    class dbo_ExportStock
+    public class dbo_ExportStock 
     {
         private int exportId;
         private int billId;
         private int commodityId;
+        private string? commodityName;
         private decimal unitPrice;
         private int quantity;
         private decimal totalCost;
@@ -22,6 +24,7 @@ namespace HUAN_TECH.ViewModels
         public int ExportId { get => exportId; set => exportId = value; }
         public int BillId { get => billId; set => billId = value; }
         public int CommodityId { get => commodityId; set => commodityId = value; }
+        public string? CommodityName { get => commodityName; set => commodityName = value; }
         public decimal UnitPrice { get => unitPrice; set => unitPrice = value; }
         public int Quantity { get => quantity; set => quantity = value; }
         public decimal TotalCost { get => totalCost; set => totalCost = value; }

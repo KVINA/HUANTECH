@@ -19,6 +19,14 @@ namespace HUAN_TECH.ViewModels
             var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query , new object[] { GroupID });
             return data;
         }
+
+        public static DataTable? Get_ListCommodity(int GroupID)
+        {
+            string query = "Select * From [commodity] Where [GroupId] = @GroupId ";
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query, new object[] { GroupID });
+            return data;
+        }
+
         public static int? Get_CommodityID(string CommodityName,int GroupID)
         {
             string query = "Select [CommodityId] From [commodity] Where [CommodityName] = @CommodityName And [GroupId] = @GroupId ";

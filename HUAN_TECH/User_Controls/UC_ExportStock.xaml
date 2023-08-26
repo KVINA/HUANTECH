@@ -25,33 +25,33 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <WrapPanel>
+        <WrapPanel Name="wpn_body">
             <ComboBox DropDownClosed="txt_commodityGroup_DropDownClosed" Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Group Name"/>
-            <ComboBox Name="txt_commodityName" materialDesign:HintAssist.Hint="Commodity Name"/>
+            <ComboBox DropDownClosed="txt_commodityName_DropDownClosed" Name="txt_commodityName" materialDesign:HintAssist.Hint="Commodity Name"/>
+            <TextBox Name="txt_unitPrice" IsEnabled="False" materialDesign:HintAssist.Hint="Unit Price"/>
             <TextBox Name="txt_quantity" materialDesign:HintAssist.Hint="Quantity"/>
             <Button Click="Event_AddCart" Content="{materialDesign:PackIcon Kind=CartPlus}" Width="80" Margin="2" ToolTip="Thêm vào giỏ hàng"/>
             <Button Click="Event_InvoicePrinting" Content="{materialDesign:PackIcon Kind=Printer}" Width="80" Margin="2" ToolTip="In hóa đơn"/>
         </WrapPanel>
 
-        <DataGrid Name="dtg_exportstork" IsReadOnly="True" Grid.Row="1" Margin="10,0,-10,0">
+        <DataGrid Name="dtg_exportstork" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Row="1" Margin="10,0,-10,0">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Button Content="{materialDesign:PackIcon Kind=Delete, Size=11}" Height="18"/>
+                                <Button Click="Event_RemoveItem" Content="{materialDesign:PackIcon Kind=Delete, Size=11}" Height="18"/>
                             </WrapPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>                    
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Mã sản phẩm"/>
-                <DataGridTextColumn Header="Tên sản phẩm"/>
-                <DataGridTextColumn Header="Đơn giá"/>
-                <DataGridTextColumn Header="Số lượng"/>
-                <DataGridTextColumn Header="Thành tiền"/>
-                <DataGridTextColumn Header="Thời gian bảo hành"/>
-                <DataGridTextColumn Header="Ngày mua"/>
+                <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding CommodityId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding CommodityName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Đơn giá" Binding="{Binding UnitPrice}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Thành tiền" Binding="{Binding TotalCost}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Thời gian bảo hành" Binding="{Binding Note, Mode=TwoWay}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
