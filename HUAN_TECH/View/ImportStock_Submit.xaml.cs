@@ -162,7 +162,12 @@ namespace HUAN_TECH.View
         }
         private void Event_UpdateStock(object sender, RoutedEventArgs e)
         {
-            
+            var qs = MessageBox.Show($"Nhấn YES để đồng bộ dữ liệu kho.{Environment.NewLine}Chú ý: Khi đồng bộ dữ liệu sẽ không thể thay đổi thông tin.{Environment.NewLine}Hãy xác nhận kỹ trước khi đồng bộ.","Thông báo",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            if (qs == MessageBoxResult.Yes)
+            {
+
+            }
+        
         }
 
         private void Button_Cancel(object sender, RoutedEventArgs e)
@@ -183,6 +188,69 @@ namespace HUAN_TECH.View
                 txt_importQuantity.Text = rowView.Row["ImportQuantity"].ToString();
                 txt_importPrice.Text = rowView.Row["ImportPrice"].ToString();
                 btn_add.IsEnabled = false;
+            }
+        }
+
+        private void Event_Edit(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.IsEnabled)
+            {
+                if (IsCheckEnterValue())
+                {
+                    if (txt_commodityGroup.SelectedItem is DataRowView rowView)
+                    {
+                        int GroupId = (int)rowView.Row["GroupId"];
+                        var CommodityName = txt_commodityName.Text.Trim();
+                        int? CommodityID = Commodity.Get_CommodityID(CommodityName, GroupId);
+                        if (CommodityID != null)
+                        {
+                            if (ServiceProvider.Account != null)
+                            {
+                                
+                                if (this.Tag != null)
+                                {
+                                    var item = new dbo_ImportStock();
+                                    item.SerialID = (int)this.Tag;
+                                    item.ImportDate = dpk_importDate.SelectedDate;
+                                    item.CommodityId = CommodityID;
+                                    item.ImportFrom = txt_importFrom.Text.Trim();
+                                    item.ImportQuantity = int.Parse(txt_importQuantity.Text.Trim());
+                                    item.ImportPrice = decimal.Parse(txt_importPrice.Text.Trim());
+                                    item.UserImport = ServiceProvider.Account.Username;
+                                    var res = ImportStock.ImportStock_Update(item);
+                                    if (res)
+                                    {
+                                        MessageBox.Show("Thành công sửa thông tin.");
+                                        Load_WaitImportStock();
+                                        EmptyEnterValue();
+                                        btn_add.IsEnabled = true;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Không xác định được SerialID cần sửa: this.Tag is NULL");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi không xác định được tài khoản đăng nhập. Vui lòng khởi động lại chương trình");
+                                Application.Current.Shutdown();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sản phẩm chưa được khai báo trong kho sản phẩm. Vui lòng khai báo trước rồi nhập lại.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi không xác định được nhóm hàng. Hãy lựa chọn lại nhóm hàng.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin.");
+                }
             }
         }
     }

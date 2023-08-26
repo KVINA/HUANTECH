@@ -65,7 +65,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Name="btn_add" Click="Button_Add" Content="Add" Margin="5"/>
-                <Button Name="btn_edit" Style="{StaticResource Style_ButtomBiding}" Content="Edit" Grid.Column="1" Margin="5"/>
+                <Button Name="btn_edit" Click="Event_Edit" Style="{StaticResource Style_ButtomBiding}" Content="Edit" Grid.Column="1" Margin="5"/>
                 <Button Name="btn_cancel" Click="Button_Cancel" Style="{StaticResource Style_ButtomBiding}" Content="Cancel" Grid.Column="2" Margin="5"/>
             </Grid>
             

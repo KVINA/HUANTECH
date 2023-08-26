@@ -42,7 +42,7 @@ namespace HUAN_TECH.ViewModels
                 "Inner Join commodity_group As C On B.GroupId = C.GroupId " +
                 $"Where [ImportStatus] = {importStatus} ";
 
-                if (ImportDate !=null && ImportDate is DateTime date)
+                if (ImportDate != null && ImportDate is DateTime date)
                 {
                     query += $"And [ImportDate] = '{date.ToString("yyyy-MM-dd")}' ";
                 }
@@ -63,9 +63,20 @@ namespace HUAN_TECH.ViewModels
         }
         public static bool ImportStock_Insert(dbo_ImportStock item)
         {
-            string query = "Insert Into [import_stock] ([ImportDate],[CommodityId],[ImportFrom],[ImportQuantity],[ImportPrice],[UserImport]) "+
+            string query = "Insert Into [import_stock] ([ImportDate],[CommodityId],[ImportFrom],[ImportQuantity],[ImportPrice],[UserImport]) " +
                 "Values ( @ImportDate , @CommodityId , @ImportFrom , @ImportQuantity , @ImportPrice , @UserImport )";
-            var parameter = new object?[] {item.ImportDate, item.CommodityId,item.ImportFrom,item.ImportQuantity,item.ImportPrice,item.UserImport };
+            var parameter = new object?[] { item.ImportDate, item.CommodityId, item.ImportFrom, item.ImportQuantity, item.ImportPrice, item.UserImport };
+            var res = DataProvider.Instance.ExecuteNonquery(out string? exception, DataProvider.SERVER.HUANTECH, query, parameter);
+            return res > 0;
+        }
+
+        public static bool ImportStock_Update(dbo_ImportStock item)
+        {
+            string query = "Update [import_stock] Set [ImportDate] = @ImportDate ,[CommodityId] = @CommodityId ,[ImportFrom] = @ImportFrom " +
+                ",[ImportQuantity] = @ImportQuantity ,[ImportPrice] = @ImportPrice ,[UserImport] = @UserImport " +
+                "Where [SerialID] = @SerialID ";
+            var parameter = new object?[] { item.ImportDate, item.CommodityId, item.ImportFrom, item.ImportQuantity, item.ImportPrice, item.UserImport, item.SerialID };
+
             var res = DataProvider.Instance.ExecuteNonquery(out string? exception, DataProvider.SERVER.HUANTECH, query, parameter);
             return res > 0;
         }
@@ -73,6 +84,7 @@ namespace HUAN_TECH.ViewModels
 
     public class dbo_ImportStock
     {
+        private int? serialID;
         private DateTime? importDate;
         private int? commodityId;
         private string? importFrom;
@@ -82,6 +94,7 @@ namespace HUAN_TECH.ViewModels
         private string? userImport;
         private DateTime? timeUpdate;
 
+        public int? SerialID { get => serialID; set => serialID = value; }
         public DateTime? ImportDate { get => importDate; set => importDate = value; }
         public int? CommodityId { get => commodityId; set => commodityId = value; }
         public string? ImportFrom { get => importFrom; set => importFrom = value; }
