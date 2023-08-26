@@ -162,12 +162,76 @@ namespace HUAN_TECH.View
         }
         private void Event_UpdateStock(object sender, RoutedEventArgs e)
         {
-            var qs = MessageBox.Show($"Nhấn YES để đồng bộ dữ liệu kho.{Environment.NewLine}Chú ý: Khi đồng bộ dữ liệu sẽ không thể thay đổi thông tin.{Environment.NewLine}Hãy xác nhận kỹ trước khi đồng bộ.","Thông báo",MessageBoxButton.YesNo,MessageBoxImage.Question);
-            if (qs == MessageBoxResult.Yes)
+            if (dtg_waitImport.Items.Count > 0)
             {
+                var qs = MessageBox.Show($"Nhấn YES để đồng bộ dữ liệu kho.{Environment.NewLine}Chú ý: Khi đồng bộ dữ liệu sẽ không thể thay đổi thông tin.{Environment.NewLine}Hãy xác nhận kỹ trước khi đồng bộ.", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (qs == MessageBoxResult.Yes)
+                {
+                    var Dic_CommodityName = new Dictionary<string, int>();
+                    var ListSerialID = new List<int>();
+                    foreach (var item in dtg_waitImport.Items)
+                    {
+                        if (item is DataRowView rowview)
+                        {
+                            
+                            string? _commodityName = rowview.Row["CommodityName"].ToString();
+                            if (!string.IsNullOrEmpty(_commodityName) )
+                            {
+                                int _serialID = (int)rowview.Row["SerialID"];
+                                int _quantity = (int)rowview.Row["ImportQuantity"];
+                                ListSerialID.Add(_serialID);
+                                if (Dic_CommodityName.Keys.Contains(_commodityName))
+                                {
+                                    Dic_CommodityName[_commodityName] += _quantity;
+                                }
+                                else
+                                {
+                                    Dic_CommodityName.Add(_commodityName, _quantity);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không đọc được tên sản phẩm: CommodityName is NULL.");
+                                return;
+                            }                             
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không đọc được dữ liệu bảng: item is DataRowView.");
+                            return;
+                        }
+                    }
 
+                    if (ListSerialID.Count > 0 && Dic_CommodityName.Count > 0)
+                    {
+                        var str_serialID = string.Join(',', ListSerialID);                        
+                        StringBuilder builder = new StringBuilder();
+                        builder.AppendLine($"Update [import_stock] Set [ImportStatus] = 1 Where [SerialID] in ({str_serialID});");
+                        foreach (string item in Dic_CommodityName.Keys)
+                        {
+                            int quantity = Dic_CommodityName[item];
+                            string query = $"Update [commodity] Set [StockQuantity] = [StockQuantity] + {quantity} Where [CommodityName] = '{item}';";
+                            builder.AppendLine(query);
+                        }
+                        var res = DataProvider.Instance.ExecuteTransection(out string? ex, DataProvider.SERVER.HUANTECH, builder.ToString());
+                        if (res > 0)
+                        {
+                            Load_WaitImportStock();
+                            EmptyEnterValue();
+                            btn_add.IsEnabled = true;
+                            MessageBox.Show("Hoàn thành đồng bộ dữ liệu kho.");
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không lấy được dữ liệu đồng bộ.");
+                    }                    
+                }
             }
-        
         }
 
         private void Button_Cancel(object sender, RoutedEventArgs e)

@@ -185,5 +185,63 @@ namespace Models
                 return null;
             }
         }
+
+        public int ExecuteTransection(out string? exception, SERVER server, string query, object?[]? parameter = null)
+        {
+            try
+            {
+                exception = default;
+                string? str_conn = ServerSTR(server);
+                if (str_conn != null)
+                {
+                    int res = 0;
+                    using (var conn = new SqlConnection(str_conn))
+                    {
+                        conn.Open();
+                        SqlTransaction tran = conn.BeginTransaction();
+                        SqlCommand cmd = new SqlCommand(query, conn,tran);
+                        if (parameter != null && parameter.Length > 0)
+                        {
+                            var listPara = query.Split(' ');
+                            int i = 0;
+                            foreach (var item in listPara)
+                            {
+                                if (item.Contains('@'))
+                                {
+                                    cmd.Parameters.AddWithValue(item, parameter[i]);
+                                    i++;
+                                }
+                            }
+                        }
+                        try
+                        {
+                            res = cmd.ExecuteNonQuery();
+                            tran.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex.Message;
+                            tran.Rollback();
+                        }
+                        finally
+                        {
+                            tran.Dispose();
+                        }
+                        conn.Close();
+                    }
+                    return res;
+                }
+                else
+                {
+                    exception = "ERROR: Chuỗi kết nối không hợp lệ.";
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+                return 0;
+            }
+        }
     }
 }
