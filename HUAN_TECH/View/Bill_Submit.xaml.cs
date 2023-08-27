@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -29,14 +30,58 @@ namespace HUAN_TECH.View
             InitializeComponent();
             if (dataRow is null)
             {
-
+                int? billId = ExportStock.GetOrCreateBillId();
+                if (billId is not null)
+                {
+                    var data = ExportStock.Get_UseBillId((int)billId);
+                    if (data != null && data.Rows.Count > 0)
+                    {
+                        txt_billId.Text = billId.ToString();
+                        dpk_billDate.SelectedDate = DateTime.Now;
+                        txt_nameCustomer.Text = data.Rows[0]["Customer"].ToString();
+                        txt_phone.Text = data.Rows[0]["Phone"].ToString();
+                        txt_address.Text = data.Rows[0]["HomeAddress"].ToString();
+                        txt_email.Text = data.Rows[0]["Email"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không lấy đươc thông tin hóa đơn.");
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tạo được mã hóa đơn.");
+                    this.Close();
+                }
             }
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            dtg_exportstork.ItemsSource = exportStockItems;
+            else
+            {
+                txt_billId.Text = dataRow.Row["BillId"].ToString();
+                if (dataRow.Row["BillDate"] is DateTime date) dpk_billDate.SelectedDate = date;                
+                txt_nameCustomer.Text = dataRow.Row["Customer"].ToString();
+                txt_phone.Text = dataRow.Row["Phone"].ToString();
+                txt_address.Text = dataRow.Row["HomeAddress"].ToString();
+                txt_email.Text = dataRow.Row["Email"].ToString();
+            }
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;            
             Load_commondity_group();
+            Load_ExportStock();
         }
 
-        private ObservableCollection<dbo_ExportStock> exportStockItems = new ObservableCollection<dbo_ExportStock>();
+        void Load_ExportStock()
+        {
+            int billId = int.Parse(txt_billId.Text);
+            var data = ExportStock.Table_BillById(billId);
+            if (data is not null)
+            {
+                dtg_exportstork.ItemsSource = data.DefaultView;
+            }
+            else
+            {
+                dtg_exportstork.ItemsSource = null;
+            }
+        }
 
         void Load_commondity_group()
         {
@@ -66,7 +111,6 @@ namespace HUAN_TECH.View
                 }
             }
         }
-
         bool IsCheckEnterValue()
         {
             foreach (var item in wpn_body.Children.OfType<Control>())
@@ -91,14 +135,22 @@ namespace HUAN_TECH.View
                     try
                     {
                         var item = new dbo_ExportStock();
+                        item.BillId = int.Parse(txt_billId.Text);
                         item.CommodityId = (int)commodity.Row["CommodityId"];
                         item.CommodityName = commodity.Row["CommodityName"].ToString();
                         item.UnitPrice = decimal.Parse(txt_unitPrice.Text);
                         item.Quantity = int.Parse(txt_quantity.Text);
                         item.Unit = commodity.Row["Unit"].ToString();
-                        item.TotalCost = item.UnitPrice * item.Quantity;
-                        item.Note = "";
-                        exportStockItems.Add(item);
+                        item.TotalAmount = item.UnitPrice * item.Quantity;
+                        item.Note = "-";
+                        var res = ExportStock.ExportStock_AddItem(item);
+                        if (res)
+                        {                            
+                            Load_ExportStock();
+                            MessageBox.Show("Thành công thêm vào giỏ hàng.");
+                        }
+                        else
+                            MessageBox.Show("ERROR: Số lượng trong kho không đủ.");
                     }
                     catch (Exception ex)
                     {
@@ -138,7 +190,7 @@ namespace HUAN_TECH.View
                         sheet.Cells[row_start, 3].Value = item.Unit;
                         sheet.Cells[row_start, 4].Value = item.Quantity;
                         sheet.Cells[row_start, 5].Value = item.UnitPrice;
-                        sheet.Cells[row_start, 6].Value = item.TotalCost;
+                        sheet.Cells[row_start, 6].Value = item.TotalAmount;
                         sheet.Cells[row_start, 7].Value = item.Note;
                         row_start++;
                     }
@@ -148,9 +200,6 @@ namespace HUAN_TECH.View
                 }
                 MessageBox.Show("Xuất hóa đơn.");
             }
-
-
-
         }
 
         private void txt_commodityName_DropDownClosed(object sender, EventArgs e)
@@ -170,9 +219,23 @@ namespace HUAN_TECH.View
                 var qs = MessageBox.Show($"Bạn muốn xóa {item.CommodityName} ra khỏi giỏ hàng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (qs == MessageBoxResult.Yes)
                 {
-                    exportStockItems.Remove(item);
+                    var res = ExportStock.ExportStock_ReturnItem(item.ExportId, item.CommodityId, item.Quantity);
+                    if (res)
+                    {
+                        Load_ExportStock();
+                        MessageBox.Show("Hoàn thành xóa khỏi giỏ hàng.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa khỏi giỏ hàng thất bại.");
+                    }
                 }
             }
+        }
+
+        private void Event_ShowEdit(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -40,14 +40,23 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                </Grid.RowDefinitions>                
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Name="txt_billId" materialDesign:HintAssist.Hint="Số hóa đơn" Grid.Row="0" Width="Auto" IsEnabled="False"/>
+                <DatePicker Name="dpk_billDate" materialDesign:HintAssist.Hint="Ngày mua" Width="Auto" IsEnabled="True" Grid.Row="1"/>
+                <TextBox Name="txt_nameCustomer" materialDesign:HintAssist.Hint="Tên khách hàng" Grid.Row="2" Width="Auto"/>             
+                <TextBox Name="txt_phone" materialDesign:HintAssist.Hint="Số điện thoại" Grid.Row="3" Width="Auto"/>
+                <TextBox Name="txt_address" materialDesign:HintAssist.Hint="Địa chỉ" Grid.Row="4" Width="Auto"/>
+                <TextBox Name="txt_email" materialDesign:HintAssist.Hint="Email"  Grid.Row="5" Width="Auto"/>
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Edit" Grid.Column="0" Margin="2"/>
+                    <Button Content="Cancel" Grid.Column="1" Margin="2"/>
+                </Grid>
                 
-                <DatePicker materialDesign:HintAssist.Hint="Ngày mua" Width="Auto" IsEnabled="False"/>
-                <TextBox Name="txt_nameCustomer" materialDesign:HintAssist.Hint="Tên khách hàng" Grid.Row="1" Width="Auto"/>             
-                <TextBox Name="txt_phone" materialDesign:HintAssist.Hint="Số điện thoại" Grid.Row="2" Width="Auto"/>
-                <TextBox Name="txt_address" materialDesign:HintAssist.Hint="Địa chỉ" Grid.Row="3" Width="Auto"/>
-                <TextBox Name="txt_email" materialDesign:HintAssist.Hint="Email"  Grid.Row="4" Width="Auto"/>
-                <Button Content="Lưu thay đổi" Grid.Row="5"/>
             </Grid>
         </GroupBox>
 
@@ -84,7 +93,7 @@
                     <DataGridTextColumn Header="Đơn giá" Binding="{Binding UnitPrice}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Đơn vị" Binding="{Binding Unit}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding TotalCost}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding TotalAmount}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Thời gian bảo hành" Binding="{Binding Note, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
