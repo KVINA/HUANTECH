@@ -221,7 +221,7 @@ namespace HUAN_TECH.View
                         MessageBox.Show("Thành công xuất hóa đơn.");
                         try
                         {
-                            Process.Start(path_bill, "KVINA_SYSTEM");
+                            Process.Start(path_bill);
                         }
                         catch (Exception ex)
                         {

@@ -115,7 +115,7 @@ BEGIN
 	
 	IF @BillStatus = 0
 	BEGIN
-		UPDATE bill SET BillStatus = 1 WHERE BillId = @BillId;
+		UPDATE bill SET BillStatus = 1, BillDate = GetDate() WHERE BillId = @BillId;
 		SELECT * FROM bill WHERE BillId = @BillId;
 		COMMIT;
 	END

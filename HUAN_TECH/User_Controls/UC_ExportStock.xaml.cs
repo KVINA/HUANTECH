@@ -61,6 +61,7 @@ namespace HUAN_TECH.User_Controls
         {
             var wd = new Bill_Submit();
             wd.ShowDialog();
+            Load_DataBill();
         }
 
         private void Event_EditBill(object sender, RoutedEventArgs e)
