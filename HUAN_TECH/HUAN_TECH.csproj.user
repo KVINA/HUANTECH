@@ -22,6 +22,9 @@
     <Compile Update="User_Controls\UC_ImportStock.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Bill_Submit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Commodity_Submit.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="User_Controls\UC_ImportStock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Bill_Submit.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Commodity_Submit.xaml">

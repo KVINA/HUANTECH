@@ -518,3 +518,5 @@ D:\Github\HUANTECH\HUAN_TECH\bin\Debug\net6.0-windows\EPPlus.System.Drawing.dll
 D:\Github\HUANTECH\HUAN_TECH\bin\Debug\net6.0-windows\Microsoft.IO.RecyclableMemoryStream.dll
 D:\Github\HUANTECH\HUAN_TECH\bin\Debug\net6.0-windows\System.Security.Cryptography.Pkcs.dll
 D:\Github\HUANTECH\HUAN_TECH\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\View\Bill_Submit.g.cs
+D:\Github\HUANTECH\HUAN_TECH\obj\Debug\net6.0-windows\View\Bill_Submit.baml

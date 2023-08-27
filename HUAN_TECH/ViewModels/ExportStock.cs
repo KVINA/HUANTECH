@@ -19,6 +19,7 @@ namespace HUAN_TECH.ViewModels
         private string? commodityName;
         private decimal unitPrice;
         private int quantity;
+        private string? unit;
         private decimal totalCost;
         private string? note;
         public int ExportId { get => exportId; set => exportId = value; }
@@ -27,7 +28,9 @@ namespace HUAN_TECH.ViewModels
         public string? CommodityName { get => commodityName; set => commodityName = value; }
         public decimal UnitPrice { get => unitPrice; set => unitPrice = value; }
         public int Quantity { get => quantity; set => quantity = value; }
+        public string? Unit { get => unit; set => unit = value; }
         public decimal TotalCost { get => totalCost; set => totalCost = value; }
         public string? Note { get => note; set => note = value; }
+        
     }
 }
