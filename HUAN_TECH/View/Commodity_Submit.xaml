@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:HUAN_TECH.View" WindowStartupLocation="CenterOwner"
+        xmlns:local="clr-namespace:HUAN_TECH.View" WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" WindowStyle="ToolWindow" 
-        Title="Commodity_Submit" Height="300" Width="500">
+        Title="Commodity_Submit" Height="330" Width="500">
     <Grid Name="grid_body">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
@@ -30,6 +30,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <ComboBox Name="txt_commodityGroup" materialDesign:HintAssist.Hint="Nhóm hàng"/>
@@ -38,8 +39,8 @@
         <TextBox Name="txt_description" materialDesign:HintAssist.Hint="Mô tả sản phẩm" Grid.Row="1" Grid.ColumnSpan="2"/>
             
         <TextBox Name="txt_price" materialDesign:HintAssist.Hint="Giá bán" Grid.Row="2"/>
-        <TextBox Name="txt_quantity" materialDesign:HintAssist.Hint="Số lượng tồn kho" Grid.Row="2" Grid.Column="1"/>
-
-        <Button Name="btn_submit" Content="Submit" Click="Event_Submit" Grid.Row="3" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox Name="txt_quantity" materialDesign:HintAssist.Hint="Số lượng tồn kho" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Name="txt_unit" materialDesign:HintAssist.Hint="Đơn vị" Grid.Row="3" Grid.Column="1"/>
+        <Button Name="btn_submit" Content="Submit" Click="Event_Submit" Grid.Row="4" Grid.ColumnSpan="2" Margin="5"/>
     </Grid>
 </Window>

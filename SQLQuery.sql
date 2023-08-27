@@ -51,6 +51,7 @@ Create table commodity
 	DescriptionCommodity nvarchar(200) NULL,
 	CellingPrice decimal(10, 2) NULL,
 	StockQuantity int NULL,
+	Unit nvarchar(10),
 	UserUpdate varchar(10),
 	TimeUpdate datetime default getdate()
 )

@@ -1,9 +1,11 @@
 ﻿using HUAN_TECH.ViewModels;
 using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +27,11 @@ namespace HUAN_TECH.User_Controls
     public partial class UC_ExportStock : UserControl
     {
         private ObservableCollection<dbo_ExportStock> exportStockItems = new ObservableCollection<dbo_ExportStock>();
+        
         public UC_ExportStock()
         {
             InitializeComponent();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             dtg_exportstork.ItemsSource = exportStockItems;
             Load_commondity_group();
         }
@@ -112,7 +116,38 @@ namespace HUAN_TECH.User_Controls
 
         private void Event_InvoicePrinting(object sender, RoutedEventArgs e)
         {
+            int count_commodity = dtg_exportstork.Items.Count;
+            if (count_commodity > 0) 
+            {
+                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bills.xlsx");
+                using (var package = new ExcelPackage(new FileInfo(path), true))
+                {
+                    var sheet = package.Workbook.Worksheets[0];
+                    int row_start = 11;//+30 = row_end
+                    if (count_commodity > 4)
+                    {
+                        sheet.InsertRow(12, (count_commodity - 4),11);
+                    }
+                    foreach (dbo_ExportStock item in dtg_exportstork.Items)
+                    {
+                        sheet.Cells[row_start, 1].Value = row_start - 10; //STT
+                        sheet.Cells[row_start, 2].Value = item.CommodityName; //Ten thiet bi
+                        sheet.Cells[row_start, 3].Value = "Unit";
+                        sheet.Cells[row_start, 4].Value = item.Quantity;
+                        sheet.Cells[row_start, 5].Value = item.UnitPrice;
+                        sheet.Cells[row_start, 6].Value = item.TotalCost;
+                        sheet.Cells[row_start, 7].Value = item.Note;
+                        row_start++;
+                    }
+                    string path_bill = System.IO.Path.Combine("D:\\New folder", $"{DateTime.Now.ToString("yyyyMMdd hhmmssfff")}.xlsx");
+                    package.SaveAs(path_bill);
+                    package.Dispose();                    
+                }
+                MessageBox.Show("Xuất hóa đơn.");
+            }
 
+            
+           
         }
 
         private void txt_commodityName_DropDownClosed(object sender, EventArgs e)

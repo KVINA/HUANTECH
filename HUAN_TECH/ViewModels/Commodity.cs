@@ -40,7 +40,7 @@ namespace HUAN_TECH.ViewModels
         }
         public static DataTable? Table_Commodity(string? GroupName = null, string? CommodityName = null)
         {
-            string query = "SELECT [CommodityId] ,[GroupName],[CommodityName],[DescriptionCommodity],[CellingPrice],[StockQuantity],A.[TimeUpdate] " +
+            string query = "SELECT [CommodityId] ,[GroupName],[CommodityName],[DescriptionCommodity],[CellingPrice],[StockQuantity],[Unit],A.[TimeUpdate] " +
                 "FROM [HUANTECH].[dbo].[commodity] as A  INNER JOIN [commodity_group] As B ON A.GroupId = B.GroupId ";
             string condition = "";
             object[] parmeter = new object[0];
@@ -64,20 +64,20 @@ namespace HUAN_TECH.ViewModels
             return DataProvider.Instance.ExecuteQuery(out string? ex, DataProvider.SERVER.HUANTECH, query + condition, parmeter);
         }
 
-        public static bool Insert_Commodity(int GroupId, string CommodityName, string DescriptionCommodity, decimal CellingPrice, int StockQuantity)
+        public static bool Insert_Commodity(int GroupId, string CommodityName, string DescriptionCommodity, decimal CellingPrice, int StockQuantity, string unit)
         {
-            string query = "Insert Into [commodity] ([GroupId],[CommodityName],[DescriptionCommodity],[CellingPrice],[StockQuantity]) " +
-                                    "Values ( @GroupId , @CommodityName , @DescriptionCommodity , @CellingPrice , @StockQuantity )";
-            var parameter = new object[] { GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity };
+            string query = "Insert Into [commodity] ([GroupId],[CommodityName],[DescriptionCommodity],[CellingPrice],[StockQuantity],[Unit]) " +
+                                    "Values ( @GroupId , @CommodityName , @DescriptionCommodity , @CellingPrice , @StockQuantity , @Unit )";
+            var parameter = new object[] { GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity,unit };
             var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
             return res > 0;
         }
 
-        public static bool Update_Commodity(int GroupId, string CommodityName, string DescriptionCommodity, decimal CellingPrice, int StockQuantity, int CommodityId)
+        public static bool Update_Commodity(int GroupId, string CommodityName, string DescriptionCommodity, decimal CellingPrice, int StockQuantity,string unit, int CommodityId)
         {
             string query = "Update [commodity] Set [GroupId] = @GroupID ,[CommodityName] = @CommodityName ,[DescriptionCommodity] = @DescriptionCommodity ," +
-                "[CellingPrice] = @CellingPrice ,[StockQuantity] = @StockQuantity , [TimeUpdate] = GetDate() Where [CommodityId] = @CommodityId ";
-            var parameter = new object[] { GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity, CommodityId };
+                "[CellingPrice] = @CellingPrice ,[StockQuantity] = @StockQuantity ,[Unit] = @Unit , [TimeUpdate] = GetDate() Where [CommodityId] = @CommodityId ";
+            var parameter = new object[] { GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity,unit, CommodityId };
             var res = DataProvider.Instance.ExecuteNonquery(out string? ex, DataProvider.SERVER.HUANTECH, query, parameter);
             return res > 0;
         }

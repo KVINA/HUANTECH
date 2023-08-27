@@ -33,6 +33,7 @@ namespace HUAN_TECH.View
                 txt_description.Text = item.Row["DescriptionCommodity"].ToString();
                 txt_price.Text = item.Row["CellingPrice"].ToString();
                 txt_quantity.Text = item.Row["StockQuantity"].ToString();
+                txt_unit.Text = item.Row["Unit"].ToString();
                 Set_Type("Edit");
             }
             else
@@ -81,16 +82,16 @@ namespace HUAN_TECH.View
                         string DescriptionCommodity = txt_description.Text.Trim();
                         decimal CellingPrice = decimal.Parse(txt_price.Text);
                         int StockQuantity = int.Parse(txt_quantity.Text);
-
+                        string unit = txt_unit.Text.Trim();
                         var res = false;
                         switch (content)
                         {
-                            case "Add":                                
-                                res = Commodity.Insert_Commodity(GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity);                                
+                            case "Add":
+                                res = Commodity.Insert_Commodity(GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity, unit);
                                 break;
                             case "Edit":
                                 int CommodityId = (int)this.Tag;
-                                res = Commodity.Update_Commodity(GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity, CommodityId);
+                                res = Commodity.Update_Commodity(GroupId, CommodityName, DescriptionCommodity, CellingPrice, StockQuantity, unit, CommodityId);
                                 break;
                             default:
                                 break;
@@ -105,6 +106,10 @@ namespace HUAN_TECH.View
                             MessageBox.Show($"ERROR: INSERT - UPDATE LOSE!");
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin.");
                 }
             }
         }
