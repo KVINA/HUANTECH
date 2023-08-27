@@ -85,10 +85,11 @@ namespace HUAN_TECH.ViewModels
             return res > 0;
         }
 
-        public static bool ExportStock_ReturnItem(int exportId, int commodityId, int quantity)
+        public static bool ExportStock_ReturnItem(int exportId, int commodityId,int billId,decimal totalAmount, int quantity)
         {
             string query = $"Update commodity Set StockQuantity = StockQuantity + {quantity} Where CommodityId = {commodityId}; " +
-                $"Update export_stock Set [ExportStatus] = 1 Where [ExportId] = {exportId};";
+                $"Update export_stock Set [ExportStatus] = 1 Where [ExportId] = {exportId};" +
+                $"Update bill Set [TotalCost] = [TotalCost] - {totalAmount} Where [BillId] = {billId};"; ;
             var res = DataProvider.Instance.ExecuteTransection(out string? exception, DataProvider.SERVER.HUANTECH, query);
             return res > 0;
         }

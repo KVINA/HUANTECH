@@ -62,5 +62,20 @@ namespace HUAN_TECH.User_Controls
             var wd = new Bill_Submit();
             wd.ShowDialog();
         }
+
+        private void Event_EditBill(object sender, RoutedEventArgs e)
+        {
+            if (dtg_bill.SelectedItem is DataRowView dataRow)
+            {
+                var wd = new Bill_Submit(dataRow);
+                wd.ShowDialog();
+                Load_DataBill();
+            }
+        }
+
+        private void Event_Search(object sender, RoutedEventArgs e)
+        {
+            Load_DataBill();
+        }
     }
 }

@@ -72,6 +72,7 @@ Create table import_stock
 	TimeUpdate datetime default getdate()
 )
 Go
+
 Create PROC USP_GetOrCreateBillId
 AS
 BEGIN
@@ -87,8 +88,8 @@ BEGIN
     -- Nếu không có Bill nào có BillStatus = 0, tạo một Bill mới và trả về BillId
     IF @ExistingBillId IS NULL
     BEGIN
-        INSERT INTO bill (BillStatus)
-        VALUES (0);
+        INSERT INTO bill (BillStatus,TotalCost)
+        VALUES (0,0);
         SET @ExistingBillId = SCOPE_IDENTITY();
     END;
 
@@ -138,6 +139,7 @@ BEGIN
 			BEGIN
 				Insert Into [export_stock] ([BillId],[CommodityId],[UnitPrice],[Quantity],[Note]) Values ( @BillId , @CommodityId , @UnitPrice , @Quantity , @Note );
 				Update commodity Set StockQuantity = StockQuantity - @Quantity Where CommodityId = @CommodityId;
+				Update bill Set TotalCost = TotalCost + (@Quantity * @Unitprice) Where BillId = @BillId;
 				COMMIT;
 			END
 		else

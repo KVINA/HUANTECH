@@ -256,7 +256,7 @@ namespace HUAN_TECH.View
                 var qs = MessageBox.Show($"Bạn muốn xóa {item.CommodityName} ra khỏi giỏ hàng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (qs == MessageBoxResult.Yes)
                 {
-                    var res = ExportStock.ExportStock_ReturnItem(item.ExportId, item.CommodityId, item.Quantity);
+                    var res = ExportStock.ExportStock_ReturnItem(item.ExportId, item.CommodityId,item.BillId,item.TotalAmount, item.Quantity);
                     if (res)
                     {
                         Load_ExportStock();
