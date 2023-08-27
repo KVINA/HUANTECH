@@ -221,7 +221,12 @@ namespace HUAN_TECH.View
                         MessageBox.Show("Thành công xuất hóa đơn.");
                         try
                         {
-                            Process.Start(path_bill);
+                            ProcessStartInfo psi = new ProcessStartInfo
+                            {
+                                FileName = path_bill,
+                                UseShellExecute = true
+                            };
+                            Process.Start(psi);
                         }
                         catch (Exception ex)
                         {
