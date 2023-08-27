@@ -14,14 +14,14 @@
         </Grid.RowDefinitions>
         
         <WrapPanel>
-            <DatePicker Margin="2" materialDesign:HintAssist.Hint="Ngày xuất" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Width="150"/>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="150" Margin="2" materialDesign:HintAssist.Hint="Bill Id"/>
+            <DatePicker Name="dpk_billDate" Margin="2" materialDesign:HintAssist.Hint="Ngày xuất" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Width="150"/>
+            <TextBox Name="txt_billId" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="150" Margin="2" materialDesign:HintAssist.Hint="Bill Id"/>
 
             <Button Content="Tìm kiếm" Margin="2" Width="100"/>
             <Button Click="Event_CreateBill" Content="Ghi Bill" Margin="2" Width="100"/>
         </WrapPanel>
 
-        <DataGrid Grid.Row="1" IsReadOnly="True" Margin="2">
+        <DataGrid Name="dtg_bill" Grid.Row="1" IsReadOnly="True" Margin="2">
             
         </DataGrid>
     </Grid>

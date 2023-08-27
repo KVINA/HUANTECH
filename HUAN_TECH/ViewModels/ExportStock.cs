@@ -38,10 +38,49 @@ namespace HUAN_TECH.ViewModels
             return data;
         }
 
+        public static DataTable? Table_Bill(DateTime? billDate, int? billId)
+        {
+            string query = "Select * From bill Where BillStatus = 1 ";
+
+            if (billDate != null && billDate is DateTime date)
+            {
+                query += $"And B.BillDate = '{date.ToString("yyyy-MM-dd")}' ";
+            }
+
+            if (billId != null)
+            {
+                query += $"And B.BillId = {billId} ";
+            }
+
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query);
+            return data;
+        }
+
+        public static DataTable? Table_ExportSport(DateTime? billDate, int? billId, int ExportSatus = 0, int billStatus = 1)
+        {
+            string query = "Select ExportId,A.BillId,A.CommodityId,CommodityName,UnitPrice,Quantity,Unit, (Quantity*UnitPrice) TotalAmount,Note " +
+               "From export_stock as A " +
+               "Inner join bill as B On A.BillId = B.BillId " +
+               "Inner join commodity as C on A.CommodityId = C.CommodityId " +
+               $"Where ExportStatus = 0 And B.BillStatus = {billStatus} ";
+            if (billDate != null && billDate is DateTime date)
+            {
+                query += $"And B.BillDate = '{date.ToString("yyyy-MM-dd")}' ";
+            }
+
+            if (billId != null)
+            {
+                query += $"And B.BillId = {billId} ";
+            }
+
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query);
+            return data;
+        }
+
         public static bool ExportStock_AddItem(dbo_ExportStock item)
         {
             string query = "EXEC USP_AddCart @BillId , @CommodityId , @UnitPrice , @Quantity , @Note ;";
-            var parameter = new object[] { item.BillId,item.CommodityId,item.UnitPrice,item.Quantity,item.Note };
+            var parameter = new object?[] { item.BillId, item.CommodityId, item.UnitPrice, item.Quantity, item.Note };
             var res = DataProvider.Instance.ExecuteNonquery(out string? exception, DataProvider.SERVER.HUANTECH, query, parameter);
             return res > 0;
         }
@@ -50,7 +89,7 @@ namespace HUAN_TECH.ViewModels
         {
             string query = $"Update commodity Set StockQuantity = StockQuantity + {quantity} Where CommodityId = {commodityId}; " +
                 $"Update export_stock Set [ExportStatus] = 1 Where [ExportId] = {exportId};";
-            var res = DataProvider.Instance.ExecuteTransection(out string? exception,DataProvider.SERVER.HUANTECH,query);
+            var res = DataProvider.Instance.ExecuteTransection(out string? exception, DataProvider.SERVER.HUANTECH, query);
             return res > 0;
         }
     }
@@ -87,7 +126,7 @@ namespace HUAN_TECH.ViewModels
             this.UnitPrice = (decimal)row["UnitPrice"];
             this.Quantity = (int)row["Quantity"];
             this.Unit = row["Unit"].ToString();
-            this.TotalAmount = (int)row["TotalAmount"];
+            this.TotalAmount = (decimal)row["TotalAmount"];
             this.Note = row["Note"].ToString();
         }
     }

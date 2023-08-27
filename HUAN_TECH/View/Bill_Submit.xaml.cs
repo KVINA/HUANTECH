@@ -1,11 +1,14 @@
 ﻿using HUAN_TECH.ViewModels;
+using Models;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -58,24 +61,33 @@ namespace HUAN_TECH.View
             else
             {
                 txt_billId.Text = dataRow.Row["BillId"].ToString();
-                if (dataRow.Row["BillDate"] is DateTime date) dpk_billDate.SelectedDate = date;                
+                if (dataRow.Row["BillDate"] is DateTime date) dpk_billDate.SelectedDate = date;
                 txt_nameCustomer.Text = dataRow.Row["Customer"].ToString();
                 txt_phone.Text = dataRow.Row["Phone"].ToString();
                 txt_address.Text = dataRow.Row["HomeAddress"].ToString();
                 txt_email.Text = dataRow.Row["Email"].ToString();
             }
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;            
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             Load_commondity_group();
             Load_ExportStock();
         }
 
+        List<dbo_ExportStock> ListExportData(DataTable data)
+        {
+            var mylist = new List<dbo_ExportStock>();
+            foreach (DataRow row in data.Rows)
+            {
+                mylist.Add(new dbo_ExportStock(row));
+            }
+            return mylist;
+        }
         void Load_ExportStock()
         {
             int billId = int.Parse(txt_billId.Text);
             var data = ExportStock.Table_BillById(billId);
             if (data is not null)
             {
-                dtg_exportstork.ItemsSource = data.DefaultView;
+                dtg_exportstork.ItemsSource = ListExportData(data);
             }
             else
             {
@@ -145,7 +157,7 @@ namespace HUAN_TECH.View
                         item.Note = "-";
                         var res = ExportStock.ExportStock_AddItem(item);
                         if (res)
-                        {                            
+                        {
                             Load_ExportStock();
                             MessageBox.Show("Thành công thêm vào giỏ hàng.");
                         }
@@ -174,7 +186,7 @@ namespace HUAN_TECH.View
             int count_commodity = dtg_exportstork.Items.Count;
             if (count_commodity > 0)
             {
-                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bills.xlsx");
+                string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Bills.xlsx");                
                 using (var package = new ExcelPackage(new FileInfo(path), true))
                 {
                     var sheet = package.Workbook.Worksheets[0];
@@ -183,8 +195,14 @@ namespace HUAN_TECH.View
                     {
                         sheet.InsertRow(12, (count_commodity - 4), 11);
                     }
+                    StringBuilder builder = new StringBuilder();
                     foreach (dbo_ExportStock item in dtg_exportstork.Items)
                     {
+                        var note = string.IsNullOrEmpty(item.Note) ? "-" : item.Note.Replace("'", "");
+                        string query = $"Update [export_stock] Set Note = N'{note}' Where [ExportId] = {item.ExportId};";
+
+                        builder.Append(query);
+
                         sheet.Cells[row_start, 1].Value = row_start - 10; //STT
                         sheet.Cells[row_start, 2].Value = item.CommodityName; //Ten thiet bi
                         sheet.Cells[row_start, 3].Value = item.Unit;
@@ -194,11 +212,30 @@ namespace HUAN_TECH.View
                         sheet.Cells[row_start, 7].Value = item.Note;
                         row_start++;
                     }
-                    string path_bill = System.IO.Path.Combine("D:\\New folder", $"{DateTime.Now.ToString("yyyyMMdd hhmmssfff")}.xlsx");
-                    package.SaveAs(path_bill);
-                    package.Dispose();
-                }
-                MessageBox.Show("Xuất hóa đơn.");
+                    var res = DataProvider.Instance.ExecuteTransection(out string? exception, DataProvider.SERVER.HUANTECH, builder.ToString());
+                    if (res > 0)
+                    {
+                        string path_bill = System.IO.Path.Combine("D:\\New folder", $"{DateTime.Now.ToString("yyyyMMdd hhmmssfff")}.xlsx");
+                        package.SaveAs(path_bill);
+                        package.Dispose();
+                        MessageBox.Show("Thành công xuất hóa đơn.");
+                        try
+                        {
+                            Process.Start(path_bill, "KVINA_SYSTEM");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"{path_bill}{Environment.NewLine}{ex.Message}");
+                        }
+                        
+                    }
+                    else
+                    {
+                        package.Dispose();
+                        MessageBox.Show("Không xuất được bill. Vui lòng thử lại.");
+                    }
+                    
+                }                
             }
         }
 
@@ -235,7 +272,78 @@ namespace HUAN_TECH.View
 
         private void Event_ShowEdit(object sender, RoutedEventArgs e)
         {
+            if (sender is Button btn)
+            {
+                switch (btn.Content.ToString())
+                {
+                    case "Edit":
+                        IsEnnableInput(true);
+                        btn.Content = "Save";
+                        break;
+                    case "Save":
+                        if (!string.IsNullOrEmpty(dpk_billDate.Text) && dpk_billDate.SelectedDate is DateTime)
+                        {
+                            if (ServiceProvider.Account != null)
+                            {
+                                string date = dpk_billDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+                                string? _seller = ServiceProvider.Account.Username;
+                                string? _custoner = txt_nameCustomer.Text.Trim();
+                                string? _phone = txt_phone.Text.Trim();
+                                string? _address = txt_address.Text.Trim();
+                                string? _email = txt_email.Text.Trim();
+                                int _builId = int.Parse(txt_billId.Text.Trim());
+                                string query = $"Update [bill] Set [BillDate] = '{date}' ,[Seller] = @Seller ,[Customer] = @Customer ,[Phone] = @Phone ," +
+                                "[HomeAddress] = @HomeAddress ,[Email] = @Email ,[TimeUpdate] = GetDate() Where [BillId] = @BillId ;";
+                                var parameter = new object?[] { _seller, _custoner, _phone, _address, _email, _builId };
+                                var res = DataProvider.Instance.ExecuteNonquery(out string? exception, DataProvider.SERVER.HUANTECH, query, parameter);
+                                if (res > 0)
+                                {
+                                    IsEnnableInput(false);
+                                    btn.Content = "Edit";
+                                    MessageBox.Show("Hoàn thành lưu lại thay đổi.");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi đăng nhập. Vui lòng khởi động lại chương trình");
+                                Application.Current.Shutdown();
+                            }
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ngày bán không được phép để trống.");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        void IsEnnableInput(bool isValue)
+        {
+            dpk_billDate.IsEnabled = isValue;
+            txt_nameCustomer.IsEnabled = isValue;
+            txt_phone.IsEnabled = isValue;
+            txt_address.IsEnabled = isValue;
+            txt_email.IsEnabled = isValue;
+        }
+
+        private void Event_Cancel(object sender, RoutedEventArgs e)
+        {
+            string query = $"Select * From [bill] Where [BillId] = {txt_billId.Text}";
+            var data = DataProvider.Instance.ExecuteQuery(out string? exception, DataProvider.SERVER.HUANTECH, query);
+            if (data != null && data.Rows.Count > 0)
+            {
+                if (data.Rows[0]["BillDate"] is DateTime date) dpk_billDate.SelectedDate = date;               
+                txt_nameCustomer.Text = data.Rows[0]["Customer"].ToString();
+                txt_phone.Text = data.Rows[0]["Phone"].ToString();
+                txt_address.Text = data.Rows[0]["HomeAddress"].ToString();
+                txt_email.Text = data.Rows[0]["Email"].ToString();
+                IsEnnableInput(false);
+                btn_edit.Content = "Edit";
+            }
         }
     }
 }
