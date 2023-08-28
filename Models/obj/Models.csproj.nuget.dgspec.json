@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj": {}
+    "D:\\Github\\HUANTECH\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj": {
+    "D:\\Github\\HUANTECH\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj",
+        "projectUniqueName": "D:\\Github\\HUANTECH\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\KVINA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\obj\\",
+        "projectPath": "D:\\Github\\HUANTECH\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\Developer Net\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\HUANTECH\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\KVINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Developer Net\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

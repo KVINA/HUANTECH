@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HUAN_TECH"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Hello" Height="700" Width="1200" Icon="/fox.png">
+        Title="Hello" Height="700" Width="1200">
     <Grid>
         <Grid.Resources>
             <Style TargetType="MenuItem" BasedOn="{x:Null}">
@@ -61,6 +61,8 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Row="1" Name="tct_body" Margin="2"/>
+        <TabControl Grid.Row="1" Name="tct_body" Margin="2">
+            
+        </TabControl>
     </Grid>
 </Window>

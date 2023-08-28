@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Azure.Core.HttpHeader;
 
 
 namespace HUAN_TECH
@@ -22,28 +23,45 @@ namespace HUAN_TECH
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Dictionary<string, TabItem> Dic_TabItem = new Dictionary<string, TabItem>();
         public MainWindow()
         {
             InitializeComponent();
         }
-
+       
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuItem menuitem)
-            {
-                var tabitem = new TabItem();
+            {               
                 var header = menuitem.Header.ToString();
-                var nameuc = menuitem.Tag;
-                if (nameuc != null)
+                
+                if (menuitem.Tag != null)
                 {
-                    tabitem.Header = TabItem_Header(header, tabitem);                    
-                    if (DisplayUC.ControlUC(nameuc.ToString()) is UserControl content)
+                    string? nameuc = menuitem.Tag.ToString();
+
+                    if (!string.IsNullOrEmpty(nameuc))
                     {
-                        content.Margin = new Thickness(0, 10, 0, 0);
-                        tabitem.Content = content;
+                        if (Dic_TabItem.Keys.Contains(nameuc))
+                        {
+                            tct_body.SelectedItem = Dic_TabItem[nameuc.ToString()];
+                        }
+                        else
+                        {
+                            var tabitem = new TabItem() { Tag = nameuc };
+                            tabitem.Header = TabItem_Header(header, tabitem);
+                            if (DisplayUC.ControlUC(nameuc.ToString()) is UserControl content)
+                            {
+                                content.Margin = new Thickness(0, 10, 0, 0);
+                                tabitem.Content = content;
+                            }
+                            tct_body.Items.Add(tabitem);
+                            tct_body.SelectedItem = tabitem;
+                        }
                     }
-                    tct_body.Items.Add(tabitem);
-                    tct_body.SelectedItem = tabitem;
+                    else
+                    {
+                        MessageBox.Show("ERROR: Tên trống");
+                    }                    
                 }
                 else
                 {
@@ -77,7 +95,12 @@ namespace HUAN_TECH
         {
             if (sender is Border border && border.DataContext is TabItem tabitem)
             {
-                tct_body.Items.Remove(tabitem);
+
+             
+                    tct_body.Items.Remove(tabitem);
+                    Dic_TabItem.Remove(tabitem.Tag.ToString());
+         
+        
             }
         }
 

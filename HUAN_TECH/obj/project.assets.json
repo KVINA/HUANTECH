@@ -3150,19 +3150,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KVINA\\.nuget\\packages\\": {}
+    "C:\\Users\\Developer Net\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KVINA\\Documents\\GitHub\\HUAN_TECH\\HUAN_TECH.csproj",
+      "projectUniqueName": "D:\\Github\\HUANTECH\\HUAN_TECH\\HUAN_TECH.csproj",
       "projectName": "HUAN_TECH",
-      "projectPath": "C:\\Users\\KVINA\\Documents\\GitHub\\HUAN_TECH\\HUAN_TECH.csproj",
-      "packagesPath": "C:\\Users\\KVINA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KVINA\\Documents\\GitHub\\HUAN_TECH\\obj\\",
+      "projectPath": "D:\\Github\\HUANTECH\\HUAN_TECH\\HUAN_TECH.csproj",
+      "packagesPath": "C:\\Users\\Developer Net\\.nuget\\packages\\",
+      "outputPath": "D:\\Github\\HUANTECH\\HUAN_TECH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\KVINA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Developer Net\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3176,8 +3176,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\KVINA\\Documents\\GitHub\\Models\\Models.csproj"
+            "D:\\Github\\HUANTECH\\Models\\Models.csproj": {
+              "projectPath": "D:\\Github\\HUANTECH\\Models\\Models.csproj"
             }
           }
         }
@@ -3228,7 +3228,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
