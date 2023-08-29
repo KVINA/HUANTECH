@@ -56,6 +56,7 @@ namespace HUAN_TECH
                             }
                             tct_body.Items.Add(tabitem);
                             tct_body.SelectedItem = tabitem;
+                            Dic_TabItem.Add(nameuc, tabitem);
                         }
                     }
                     else
@@ -95,12 +96,12 @@ namespace HUAN_TECH
         {
             if (sender is Border border && border.DataContext is TabItem tabitem)
             {
-
-             
+                var nameuc = tabitem.Tag == null? null : tabitem.Tag.ToString();
+                if (!string.IsNullOrEmpty(nameuc))
+                {
                     tct_body.Items.Remove(tabitem);
-                    Dic_TabItem.Remove(tabitem.Tag.ToString());
-         
-        
+                    Dic_TabItem.Remove(nameuc);
+                }
             }
         }
 

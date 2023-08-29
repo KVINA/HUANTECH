@@ -6,17 +6,30 @@
              xmlns:local="clr-namespace:HUAN_TECH.User_Controls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" FontFamily="Segoe UI"
-             d:DesignHeight="450" d:DesignWidth="800">    
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <StackPanel>
+            <WrapPanel Margin="2">
+                <materialDesign:PackIcon Foreground="Green" Kind="RhombusSplit" VerticalAlignment="Center" Margin="2 0"/>
+                <TextBlock Text="Khai báo" Foreground="Blue" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text=" / " FontSize="16"/>
+                <TextBlock Text="Danh mục nhóm hàng" Foreground="Blue" FontWeight="Bold" FontSize="16"/>
+            </WrapPanel>
+
+            <Separator Margin="0 10"/>
+        </StackPanel>
+       
+
+        <Grid Grid.Row="1">
             <Grid.Resources>
-                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                    <Setter Property="Margin" Value="5"/>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                    <Setter Property="Margin" Value="2"/>
                 </Style>
             </Grid.Resources>
 
@@ -33,7 +46,7 @@
             <Button Name="btn_add" Click="btn_add_Click" Margin="5" Width="100" Content="Add" Grid.Column="2"/>
         </Grid>
 
-        <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="1" IsReadOnly="True">
+        <DataGrid Margin="2" Name="dtg_commodity_group" Grid.Row="2" IsReadOnly="True">
             <DataGrid.ContextMenu>
                 <ContextMenu Style="{x:Null}">
                     <MenuItem Header="Edit" Click="Event_EditItem" Icon="{materialDesign:PackIcon Kind=Edit}" Cursor="Hand"/>
@@ -42,4 +55,5 @@
             </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
+
 </UserControl>

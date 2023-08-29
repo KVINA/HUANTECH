@@ -21,9 +21,18 @@
                 <Setter Property="Margin" Value="2"/>             
             </Style>
 
-            <Style TargetType="TabItem" BasedOn="{x:Null}"/>
+            <Style TargetType="TabItem" BasedOn="{x:Null}">
+                <Setter Property="Margin" Value="-2 0"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Margin" Value="-2 0"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
-            <Style TargetType="TabControl" BasedOn="{x:Null}"/>
+            <Style TargetType="TabControl" BasedOn="{x:Null}">
+                <Setter Property="TabStripPlacement" Value="Bottom"/>                
+            </Style>
 
         </Grid.Resources>
         <Grid.RowDefinitions>
