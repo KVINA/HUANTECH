@@ -528,3 +528,5 @@ C:\Users\KVINA\Documents\GitHub\HUAN_TECH\bin\Debug\net6.0-windows\System.Securi
 C:\Users\KVINA\Documents\GitHub\HUAN_TECH\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\View\Bill_Submit.g.cs
 C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\View\Bill_Submit.baml
+C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_Account.g.cs
+C:\Users\KVINA\Documents\GitHub\HUAN_TECH\obj\Debug\net6.0-windows\User_Controls\UC_Account.baml

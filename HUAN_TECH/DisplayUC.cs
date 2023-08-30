@@ -22,6 +22,8 @@ namespace HUAN_TECH
                     return new UC_ImportStock();
                 case "UC_ExportStock":
                     return new UC_ExportStock();
+                case "UC_Account":
+                    return new UC_Account();
                 default:
                     return null;
             }

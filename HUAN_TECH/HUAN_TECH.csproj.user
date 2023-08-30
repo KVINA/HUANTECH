@@ -10,6 +10,9 @@
     <Compile Update="Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="User_Controls\UC_Account.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User_Controls\UC_Commodity.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="User_Controls\UC_Account.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="User_Controls\UC_Commodity.xaml">

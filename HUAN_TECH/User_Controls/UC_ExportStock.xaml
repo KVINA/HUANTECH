@@ -10,17 +10,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <StackPanel>
+            <WrapPanel Margin="2">
+                <materialDesign:PackIcon Foreground="Green" Kind="RhombusSplit" VerticalAlignment="Center" Margin="2 0"/>
+                <TextBlock Text="Quản lý kho" Foreground="Blue" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text=" / " FontSize="16"/>
+                <TextBlock Text="Xuất kho" Foreground="Blue" FontWeight="Bold" FontSize="16"/>
+            </WrapPanel>
+
+            <Separator Margin="0 10"/>
+        </StackPanel>
         
-        <WrapPanel>
+        <WrapPanel Grid.Row="1">
             <DatePicker Name="dpk_billDate" Margin="2" materialDesign:HintAssist.Hint="Ngày xuất" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Width="150"/>
             <TextBox Name="txt_billId" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="150" Margin="2" materialDesign:HintAssist.Hint="Bill Id"/>
             <Button Click="Event_Search" Content="Tìm kiếm" Margin="2" Width="100"/>
             <Button Click="Event_CreateBill" Content="Ghi Bill" Margin="2" Width="100"/>
         </WrapPanel>
 
-        <DataGrid Name="dtg_bill" Grid.Row="1" IsReadOnly="True" Margin="2">
+        <DataGrid Name="dtg_bill" Grid.Row="2" IsReadOnly="True" Margin="2">
             <DataGrid.ContextMenu>
                 <ContextMenu Style="{x:Null}">
                     <MenuItem Header="Edit" Click="Event_EditBill" Icon="{materialDesign:PackIcon Kind=Edit}"/>
