@@ -56,7 +56,7 @@ namespace HUAN_TECH.User_Controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/HUAN_TECH;component/user_controls/uc_account.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HUAN_TECH;V1.0.0.0;component/user_controls/uc_account.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\User_Controls\UC_Account.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
